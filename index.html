@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
   <title>Todo app</title>
 
 
@@ -15,49 +18,55 @@
 
   <div class='container'>
     <header class='header'>
-      <p class='header__content'>to do</p>
+      <p class='header__content'>todo</p>
       <img class='header__theme-toggle' src='./images/icon-sun.svg'>
     </header>
     <main class='main'>
       <form class='main__form-contanier'>
         <input class='checkbox main__form-contanier__checkbox' type='checkbox'>
-        <input class='main__form-contanier__text' type='text'>
-        <button class='main__form-contanier__submit-button' type='submit'>Add</button>
+        <input class='main__form-contanier__input' type='text' placeholder='New task'>
+        <button class='button main__form-contanier__submit-button' type='submit'>Add</button>
       </form>
       <ul class='main__task-list'>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Complete online JavaScript course</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Jog around the park 3x</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>10 minutes meditation</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Read for 1 hour</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Pick up groceries</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Complete Todo App on Frontend Mentor</p>
+          <button class='button main__task-list__item__remove-button'></button>
         </li>
       </ul>
       <nav class='main__nav'>
         <p class='main__nav__items-left'>5 items left</p>
         <div class=''>
-          <button class='main__nav__button'>All</button>
-          <button class='main__nav__button'>Active</button>
-          <button class='main__nav__button'>Completed</button>
+          <button class='button main__nav__button'>All</button>
+          <button class='button main__nav__button'>Active</button>
+          <button class='button main__nav__button'>Completed</button>
         </div>
-        <button class='main__nav__button'>Clear Completed</button>
+        <button class='button main__nav__button'>Clear Completed</button>
       </nav>
     </main>
     <footer>Drag and drop to reorder list</footer>
