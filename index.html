@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+  <link rel="stylesheet" href="./style.css">
+  <title>Todo app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+
 </head>
+
 <body>
 
-  Todo
-
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class='container'>
+    <header class='header'>
+      <p class='header__content'>to do</p>
+      <img class='header__theme-toggle' src='./images/icon-sun.svg'>
+    </header>
+    <main class='main'>
+      <form class='main__form-contanier'>
+        <input class='checkbox main__form-contanier__checkbox' type='checkbox'>
+        <input class='main__form-contanier__text' type='text'>
+        <button class='main__form-contanier__submit-button' type='submit'>Add</button>
+      </form>
+      <ul class='main__task-list'>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>Complete online JavaScript course</p>
+        </li>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>Jog around the park 3x</p>
+        </li>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>10 minutes meditation</p>
+        </li>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>Read for 1 hour</p>
+        </li>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>Pick up groceries</p>
+        </li>
+        <li class='main__task-list__item'>
+          <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+          <p class='main__task-list__item__task'>Complete Todo App on Frontend Mentor</p>
+        </li>
+      </ul>
+      <nav class='main__nav'>
+        <p class='main__nav__items-left'>5 items left</p>
+        <div class=''>
+          <button class='main__nav__button'>All</button>
+          <button class='main__nav__button'>Active</button>
+          <button class='main__nav__button'>Completed</button>
+        </div>
+        <button class='main__nav__button'>Clear Completed</button>
+      </nav>
+    </main>
+    <footer>Drag and drop to reorder list</footer>
   </div>
 </body>
+
 </html>
