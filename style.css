@@ -30,7 +30,6 @@ html {
 }
 
 body {
-    max-width: 1440px;
     background-color: var(--background-color-body);
     background-image: url(./images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
@@ -44,7 +43,7 @@ body {
 }
 
 .header {
-    margin: 40px 0;
+    margin: 5vw 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -195,6 +194,7 @@ body {
     background-color: transparent;
     border: none;
     font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
     color: var(--text-color-button);
     padding: 0;
@@ -202,4 +202,13 @@ body {
 
 .button:hover {
     color: var(--text-color-button-hover);
+}
+
+.main__nav__button-container {
+    display: flex;
+    column-gap: 30px;
+}
+
+.main__nav__button--active {
+    color: var(--text-color-active-button);
 }

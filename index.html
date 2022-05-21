@@ -22,13 +22,13 @@
       <img class='header__theme-toggle' src='./images/icon-sun.svg'>
     </header>
     <main class='main'>
-      <form class='main__form-contanier'>
-        <input class='checkbox main__form-contanier__checkbox' type='checkbox'>
-        <input class='main__form-contanier__input' type='text' placeholder='New task'>
+      <form class='main__form-contanier' name='newItemForm'>
+        <input class='checkbox main__form-contanier__checkbox' type='checkbox' name='checkbox'>
+        <input class='main__form-contanier__input' type='text' placeholder='New task' name='task'>
         <button class='button main__form-contanier__submit-button' type='submit'>Add</button>
       </form>
       <ul class='main__task-list'>
-        <li class='main__task-list__item'>
+        <!--         <li class='main__task-list__item'>
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Complete online JavaScript course</p>
           <button class='button main__task-list__item__remove-button'></button>
@@ -57,12 +57,14 @@
           <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
           <p class='main__task-list__item__task'>Complete Todo App on Frontend Mentor</p>
           <button class='button main__task-list__item__remove-button'></button>
-        </li>
+        </li> -->
       </ul>
       <nav class='main__nav'>
-        <p class='main__nav__items-left'>5 items left</p>
-        <div class=''>
-          <button class='button main__nav__button'>All</button>
+        <p class='main__nav__items-left'>
+          <!-- 5 items left -->
+        </p>
+        <div class='main__nav__button-container'>
+          <button class='button main__nav__button main__nav__button--active'>All</button>
           <button class='button main__nav__button'>Active</button>
           <button class='button main__nav__button'>Completed</button>
         </div>
@@ -71,6 +73,7 @@
     </main>
     <footer>Drag and drop to reorder list</footer>
   </div>
+  <script type='module' src='./index.js'></script>
 </body>
 
 </html>
