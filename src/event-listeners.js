@@ -1,7 +1,8 @@
-import { taskList, addTaskToList, changeTaskStatus, removeTaskFromList } from "./data.js";
+import { taskList } from "./data.js";
 import { createTaskListElement } from './dom.js'
-import { Task } from './classTask.js'
+import { Task } from './class/classTask.js'
 export { removeTaskItemContainerElement }
+
 const addTaskButton = document.querySelector('.main__form-contanier__submit-button');
 
 
@@ -14,7 +15,7 @@ addTaskButton.addEventListener('click', (event) => {
     }
     const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value);
     createTaskListElement(taskItem);
-    addTaskToList(taskItem);
+    taskList.addTask(taskItem);
 
     //clear-form
     newItemForm.task.value = '';
@@ -25,11 +26,7 @@ addTaskButton.addEventListener('click', (event) => {
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'P')) {
         event.currentTarget.querySelector('.checkbox').checked = (event.currentTarget.querySelector('.checkbox').checked) ? false : true;
-        changeTaskStatus(event);
-        // const itemToChange = findTask(event);
-        // taskList[itemToChange].completed = event.currentTarget.querySelector('.checkbox').checked;
-        // saveTaskList();
-
+        taskList.changeTaskStatus(event);
         return;
     }
     // taskList.splice(taskList.indexOf(taskList.find((element) =>{
@@ -38,7 +35,7 @@ const removeTaskItemContainerElement = (event) => {
     //console.log(event.currentTarget.querySelector('.main__task-list__item__task').textContent)
     if ((event.target.tagName === 'BUTTON')) {
         event.currentTarget.parentElement.removeChild(event.currentTarget);
-        removeTaskFromList(event);
+        taskList.removeTask(event);
         // const itemToRemove = findTask(event);
         // taskList.splice(itemToRemove, 1);
 
