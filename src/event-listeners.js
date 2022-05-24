@@ -1,10 +1,9 @@
 import { taskList } from "./data.js";
-import { createTaskListElement } from './dom.js'
-import { Task } from './class/classTask.js'
-export { removeTaskItemContainerElement }
+import { Task } from './class/classTask.js';
+import { createTaskListElement } from './dom.js';
+import { addTaskButton, clearButton } from './querySelectors.js';
 
-const addTaskButton = document.querySelector('.main__form-contanier__submit-button');
-
+export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
 addTaskButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -16,31 +15,44 @@ addTaskButton.addEventListener('click', (event) => {
     const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value);
     createTaskListElement(taskItem);
     taskList.addTask(taskItem);
+    clearForm();
+})
 
-    //clear-form
-    newItemForm.task.value = '';
-    newItemForm.checkbox.checked = false;
+const addEventListenersOnListElement = (taskItemContainerElement) => {
+    taskItemContainerElement.addEventListener('change', (event) => {
+        taskList.changeTaskStatus(event);
+    })
+    taskItemContainerElement.addEventListener('click', (event) => {
+        removeTaskItemContainerElement(event);
+        changeStateOfTaskElement(event);
+    })
+}
 
+clearButton.addEventListener('click', () => {
+    taskList.clearComplete();
 })
 
 const removeTaskItemContainerElement = (event) => {
-    if ((event.target.tagName === 'P')) {
-        event.currentTarget.querySelector('.checkbox').checked = (event.currentTarget.querySelector('.checkbox').checked) ? false : true;
-        taskList.changeTaskStatus(event);
-        return;
-    }
-    // taskList.splice(taskList.indexOf(taskList.find((element) =>{
-    //     return element.task === event.currentTarget.
-    // })),1)
-    //console.log(event.currentTarget.querySelector('.main__task-list__item__task').textContent)
     if ((event.target.tagName === 'BUTTON')) {
         event.currentTarget.parentElement.removeChild(event.currentTarget);
         taskList.removeTask(event);
-        // const itemToRemove = findTask(event);
-        // taskList.splice(itemToRemove, 1);
-
-        // saveTaskList();
     }
+}
+
+const removeTaskItemElement = (index) => {
+    taskListContainerElement.removeChild(taskListContainerElement.children[index]);
+}
+
+const changeStateOfTaskElement = (event) => {
+    if ((event.target.tagName === 'P')) {
+        event.currentTarget.querySelector('.checkbox').checked = (event.currentTarget.querySelector('.checkbox').checked) ? false : true;
+        taskList.changeTaskStatus(event);
+    }
+}
+
+const clearForm = () => {
+    newItemForm.task.value = '';
+    newItemForm.checkbox.checked = false;
 }
 
 // window.onbeforeunload = () => {

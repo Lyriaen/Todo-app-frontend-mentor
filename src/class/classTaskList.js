@@ -1,65 +1,67 @@
-export { TaskList };
-
 import { IncompleteTaskCounter } from './classIncompleteTaskCounter.js';
-import { createTaskListElement } from '../dom.js'
+import { createTaskListElement, removeTaskItemElement } from '../dom.js';
+
+export { TaskList };
 
 class TaskList {
     constructor() {
         if (!this.checkIfTaskListExist()) {
             localStorage.setItem('taskList', '[]');
         };
-        this.list = JSON.parse(localStorage.getItem('taskList'))
-        console.log(JSON.parse(localStorage.getItem('taskList')))
+        this.list = JSON.parse(localStorage.getItem('taskList'));
         this.createTaskListElement();
         this.incompleteTaskCounter = new IncompleteTaskCounter(this.list);
-        console.log('hello', this.incompleteTaskCounter.value)
     }
 
     addTask = (taskItem) => {
         this.list.push(taskItem);
-        if (taskItem.completed === false) {
+        if (!taskItem.completed) {
             this.incompleteTaskCounter.increase();
         }
         this.saveTaskList();
-        // console.log(taskItem.completed, this.incompleteTaskCounter.value)
     }
 
     removeTask = (event) => {
         const indexOfItemToRemove = this.findTask(event);
-        // console.log(itemToRemove);
-        if (this.list[indexOfItemToRemove].completed === false) {
+        if (!this.list[indexOfItemToRemove].completed) {
             this.incompleteTaskCounter.decrease();
         }
-
-        console.log('1', this.incompleteTaskCounter.value);
         this.list.splice(indexOfItemToRemove, 1);
         this.saveTaskList();
     }
 
+    clearComplete = () => {
+        const helperList = this.list.map(task => task);
+        //reverse array due to remove completed task starting from end.
+        //thanks to this we dont change index of incomplete elements 
+        //during removing tasks from original task list
+        helperList.reverse().map((task, index) => {
+            if (task.completed) {
+                this.list.splice(helperList.length - 1 - index, 1);
+                removeTaskItemElement(helperList.length - 1 - index);
+            }
+        })
+        console.log(this.list);
+        this.saveTaskList();
+    }
+
     createTaskListElement = () => {
-        console.log(this)
         this.list.map((taskItem) => {
             createTaskListElement(taskItem);
         })
     }
 
     checkIfTaskListExist = () => {
-        if (localStorage.getItem('taskList') === null) {
-            return false;
-        }
-        return true;
+        return localStorage.getItem('taskList') === null ? false : true;
     }
 
     changeTaskStatus = (event) => {
         const indexOfItemToChange = this.findTask(event);
         this.list[indexOfItemToChange].completed = event.currentTarget.querySelector('.checkbox').checked;
-        if (this.list[indexOfItemToChange].completed === false) {
-            this.incompleteTaskCounter.increase();
-        } else {
+        this.list[indexOfItemToChange].completed === false ?
+            this.incompleteTaskCounter.increase() :
             this.incompleteTaskCounter.decrease();
-        }
         this.saveTaskList();
-        console.log(this.incompleteTaskCounter.value)
     }
 
     findTask = (event) => {
@@ -67,9 +69,6 @@ class TaskList {
     }
 
     saveTaskList = () => {
-        console.log('zapisz')
         localStorage.setItem('taskList', JSON.stringify(this.list));
     }
-
-
 }

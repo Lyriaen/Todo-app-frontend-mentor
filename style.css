@@ -186,8 +186,9 @@ body {
     padding: 20px;
 }
 
-.main__nav__items-left {
+.main__nav__incomplete-task-counter-container {
     color: var(--text-color-button);
+    font-weight: 700;
 }
 
 .button {

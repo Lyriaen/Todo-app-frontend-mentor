@@ -1,16 +1,20 @@
-import { taskList } from "./data.js";
-import { removeTaskItemContainerElement } from "./event-listeners.js";
+import { addEventListenersOnListElement } from "./event-listeners.js";
+import { taskListContainerElement, incompleteTaskCounterElement } from './querySelectors.js';
 
-export { createTaskListElement }
+export { createTaskListElement, refreshIncompleteTaskCounterElement };
 
-const taskListContainerElement = document.querySelector('.main__task-list');
+/* CreateTaskListElement create <li> element in <ul> list like:
+<li class='main__task-list__item'>
+    <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
+    <p class='main__task-list__item__task'>Task to do</p>
+    <button class='button main__task-list__item__remove-button'></button>
+</li> 
+*/
 
 const createTaskListElement = (taskItem) => {
-
     const taskItemContainerElement = document.createElement('li');
     taskItemContainerElement.classList.add('main__task-list__item');
-    taskItemContainerElement.addEventListener('click', removeTaskItemContainerElement);
-
+    addEventListenersOnListElement(taskItemContainerElement);
     taskListContainerElement.appendChild(taskItemContainerElement);
     taskItemContainerElement.appendChild(createCheckboxElement(taskItem.completed));
     taskItemContainerElement.appendChild(createParagraphElement(taskItem.task));
@@ -38,4 +42,8 @@ const createDeleteElement = () => {
     const deleteElement = document.createElement('button');
     deleteElement.classList.add('button', 'main__task-list__item__remove-button');
     return deleteElement;
+}
+
+const refreshIncompleteTaskCounterElement = (count) => {
+    incompleteTaskCounterElement.textContent = `${count} items left`;
 }

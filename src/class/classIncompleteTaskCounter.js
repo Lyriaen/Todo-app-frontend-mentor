@@ -1,17 +1,20 @@
+import { refreshIncompleteTaskCounterElement } from '../dom.js';
+
 export { IncompleteTaskCounter };
 
 class IncompleteTaskCounter {
     constructor(taskList) {
-        this.value = taskList.reduce((sum, element) => { console.log(sum); return element.completed ? sum : ++sum }, 0);
+        this.value = taskList.reduce((sum, element) => element.completed ? sum : ++sum, 0);
+        refreshIncompleteTaskCounterElement(this.value);
     }
 
     increase = () => {
         ++this.value;
-        console.log('zwiekszam')
+        refreshIncompleteTaskCounterElement(this.value);
     }
 
     decrease = () => {
         --this.value;
-        console.log('zmiejszam')
+        refreshIncompleteTaskCounterElement(this.value);
     }
 }
