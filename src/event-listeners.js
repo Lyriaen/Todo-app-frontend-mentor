@@ -1,7 +1,8 @@
 import { taskList } from "./data.js";
 import { Task } from './class/classTask.js';
-import { createTaskListElement } from './dom.js';
+import { createTaskListElement, removeTaskItemElement } from './dom.js';
 import { addTaskButton, clearButton } from './querySelectors.js';
+
 
 export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
@@ -37,10 +38,6 @@ const removeTaskItemContainerElement = (event) => {
         event.currentTarget.parentElement.removeChild(event.currentTarget);
         taskList.removeTask(event);
     }
-}
-
-const removeTaskItemElement = (index) => {
-    taskListContainerElement.removeChild(taskListContainerElement.children[index]);
 }
 
 const changeStateOfTaskElement = (event) => {

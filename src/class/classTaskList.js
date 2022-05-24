@@ -41,7 +41,6 @@ class TaskList {
                 removeTaskItemElement(helperList.length - 1 - index);
             }
         })
-        console.log(this.list);
         this.saveTaskList();
     }
 
