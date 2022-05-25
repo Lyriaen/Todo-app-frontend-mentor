@@ -31,16 +31,16 @@ class TaskList {
     }
 
     clearComplete = () => {
-        const helperList = this.list.map(task => task);
-        //reverse array due to remove completed task starting from end.
+        //iteration start from end,
         //thanks to this we dont change index of incomplete elements 
         //during removing tasks from original task list
-        helperList.reverse().map((task, index) => {
-            if (task.completed) {
-                this.list.splice(helperList.length - 1 - index, 1);
-                removeTaskItemElement(helperList.length - 1 - index);
+        for (let index = this.list.length - 1; index >= 0; --index) {
+            this.list[index]
+            if (this.list[index].completed) {
+                this.list.splice(index, 1);
+                removeTaskItemElement(index);
             }
-        })
+        }
         this.saveTaskList();
     }
 
