@@ -1,7 +1,33 @@
 import { taskList } from "./data.js";
 import { Task } from './class/classTask.js';
-import { createTaskListElement, removeTaskItemElement } from './dom.js';
-import { addTaskButton, clearButton } from './querySelectors.js';
+import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from './dom.js';
+import { addTaskButton, clearButton, TabElements, activeTabElement, changeActiveTabElement } from './querySelectors.js';
+
+TabElements.forEach(tab => tab.addEventListener('click', (event) => {
+    if (activeTabElement === event.target) {
+        return;
+    }
+    event.target.classList.toggle('main__nav__button--active');
+    activeTabElement.classList.toggle('main__nav__button--active');
+    changeActiveTabElement(event.target);
+    clearTaskListContainerElement();
+    if (event.target.textContent === 'All') {
+        taskList.createTaskList();
+        return;
+    }
+    if (event.target.textContent === 'Completed') {
+        taskList.list.filter(task => task.completed === true).map(task => createTaskListElement(task));
+        return;
+    }
+    if (event.target.textContent === 'Active') {
+        taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
+    }
+}))
+
+const check = (value) => {
+    return value.completed === true;
+}
+
 
 
 export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };

@@ -1,21 +1,12 @@
 :root {
-    /* - Bright Blue: hsl(220, 98%, 61%) */
     --text-color-active-button: hsl(220, 98%, 61%);
-    /* - Check Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%) */
     --background-color-check: linear-gradient(to left top, hsl(280, 87%, 65%), hsl(192, 100%, 67%));
-    /* - Very Dark Blue: hsl(235, 21%, 11%) */
     --background-color-body: hsl(235, 21%, 11%);
-    /* - Very Dark Desaturated Blue: hsl(235, 24%, 19%) */
     --background-color-main: hsl(235, 24%, 19%);
-    /* - Light Grayish Blue: hsl(234, 39%, 85%) */
     --text-color-task: hsl(234, 39%, 85%);
-    /* - Light Grayish Blue (hover): hsl(236, 33%, 92%) */
     --text-color-button-hover: hsl(236, 33%, 92%);
-    /* - Dark Grayish Blue: hsl(234, 11%, 52%) */
     --text-color-button: hsl(234, 11%, 52%);
-    /* - Very Dark Grayish Blue: hsl(233, 14%, 35%) */
     --text-color-task-completed: hsl(233, 14%, 35%);
-    /* - Very Dark Grayish Blue: hsl(237, 14%, 26%) */
     --border-color: hsl(237, 14%, 26%);
 }
 
@@ -106,8 +97,8 @@ body {
     background-color: transparent;
     margin: 0;
     color: var(--border-color);
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 27px;
+    height: 27px;
     border: 2px solid var(--border-color);
     border-radius: 50%;
     /* transform: translateY(-0.075em); */

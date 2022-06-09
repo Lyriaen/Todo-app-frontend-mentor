@@ -9,7 +9,7 @@ class TaskList {
             localStorage.setItem('taskList', '[]');
         };
         this.list = JSON.parse(localStorage.getItem('taskList'));
-        this.createTaskListElement();
+        this.createTaskList();
         this.incompleteTaskCounter = new IncompleteTaskCounter(this.list);
     }
 
@@ -35,7 +35,7 @@ class TaskList {
         //thanks to this we dont change index of incomplete elements 
         //during removing tasks from original task list
         for (let index = this.list.length - 1; index >= 0; --index) {
-            this.list[index]
+            this.list[index];
             if (this.list[index].completed) {
                 this.list.splice(index, 1);
                 removeTaskItemElement(index);
@@ -44,7 +44,7 @@ class TaskList {
         this.saveTaskList();
     }
 
-    createTaskListElement = () => {
+    createTaskList = () => {
         this.list.map((taskItem) => {
             createTaskListElement(taskItem);
         })

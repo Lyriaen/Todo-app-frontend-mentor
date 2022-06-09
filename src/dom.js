@@ -1,7 +1,7 @@
 import { addEventListenersOnListElement } from "./event-listeners.js";
 import { taskListContainerElement, incompleteTaskCounterElement } from './querySelectors.js';
 
-export { createTaskListElement, removeTaskItemElement, refreshIncompleteTaskCounterElement };
+export { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement, refreshIncompleteTaskCounterElement };
 
 /* CreateTaskListElement create <li> element in <ul> list like:
 <li class='main__task-list__item'>
@@ -10,6 +10,10 @@ export { createTaskListElement, removeTaskItemElement, refreshIncompleteTaskCoun
     <button class='button main__task-list__item__remove-button'></button>
 </li> 
 */
+
+const clearTaskListContainerElement = () => {
+    taskListContainerElement.replaceChildren();
+}
 
 const createTaskListElement = (taskItem) => {
     const taskItemContainerElement = document.createElement('li');
