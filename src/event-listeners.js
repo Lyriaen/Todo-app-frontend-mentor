@@ -1,7 +1,9 @@
 import { taskList } from "./data.js";
-import { Task } from './class/classTask.js';
-import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from './dom.js';
-import { addTaskButton, clearButton, TabElements, activeTabElement, changeActiveTabElement } from './querySelectors.js';
+import { Task } from "./class/classTask.js";
+import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from "./dom.js";
+import { addTaskButton, clearButton, TabElements, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
+
+export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
 TabElements.forEach(tab => tab.addEventListener('click', (event) => {
     if (activeTabElement === event.target) {
@@ -23,14 +25,6 @@ TabElements.forEach(tab => tab.addEventListener('click', (event) => {
         taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
     }
 }))
-
-const check = (value) => {
-    return value.completed === true;
-}
-
-
-
-export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
 addTaskButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -56,7 +50,14 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
 }
 
 clearButton.addEventListener('click', () => {
-    taskList.clearComplete();
+    const taskListContainerElementChildrenArray = [...taskListContainerElement.children]
+    const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length
+    taskListContainerElementChildrenArray.reverse().map((task, index) => {
+        if (task.firstChild.checked === true) {
+            removeTaskItemElement(taskListChildrenArrayLength - index - 1)
+            taskList.clearComplete(task.children[1].innerText)
+        }
+    })
 })
 
 const removeTaskItemContainerElement = (event) => {
@@ -78,6 +79,6 @@ const clearForm = () => {
     newItemForm.checkbox.checked = false;
 }
 
-// window.onbeforeunload = () => {
-//     saveTaskList();
-// }
+window.onbeforeunload = () => {
+    taskList.saveTaskList();
+}

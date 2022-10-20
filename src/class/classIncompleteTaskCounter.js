@@ -1,4 +1,4 @@
-import { refreshIncompleteTaskCounterElement } from '../dom.js';
+import { refreshIncompleteTaskCounterElement } from "../dom.js";
 
 export { IncompleteTaskCounter };
 
