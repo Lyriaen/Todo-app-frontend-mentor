@@ -1,5 +1,6 @@
-export { taskListContainerElement, incompleteTaskCounterElement, addTaskButton, clearButton, TabElements, activeTabElement, changeActiveTabElement };
+export { body, taskListContainerElement, incompleteTaskCounterElement, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement };
 
+const body = document.querySelector('body');
 const taskListContainerElement = document.querySelector('.main__task-list');
 const incompleteTaskCounterElement = document.querySelector('.main__nav__incomplete-task-counter-container');
 const addTaskButton = document.querySelector('.main__form-contanier__submit-button');
@@ -9,3 +10,4 @@ let activeTabElement = document.querySelector('.main__nav__button');
 const changeActiveTabElement = (newActiveTabElement) => {
     activeTabElement = newActiveTabElement;
 };
+const changeThemeButton = document.querySelector('.header__theme-toggle');

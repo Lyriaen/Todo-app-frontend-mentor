@@ -1,15 +1,3 @@
-:root {
-    --text-color-active-button: hsl(220, 98%, 61%);
-    --background-color-check: linear-gradient(to left top, hsl(280, 87%, 65%), hsl(192, 100%, 67%));
-    --background-color-body: hsl(235, 21%, 11%);
-    --background-color-main: hsl(235, 24%, 19%);
-    --text-color-task: hsl(234, 39%, 85%);
-    --text-color-button-hover: hsl(236, 33%, 92%);
-    --text-color-button: hsl(234, 11%, 52%);
-    --text-color-task-completed: hsl(233, 14%, 35%);
-    --border-color: hsl(237, 14%, 26%);
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,7 +10,7 @@ html {
 
 body {
     background-color: var(--background-color-body);
-    background-image: url(./../images/bg-desktop-dark.jpg);
+    background-image: var(--header-background-image);
     background-repeat: no-repeat;
     background-position: top;
     background-size: contain;
@@ -46,6 +34,10 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 15px;
+}
+
+.header__theme-toggle {
+    content: var(--theme-change-icon);
 }
 
 .main > * {

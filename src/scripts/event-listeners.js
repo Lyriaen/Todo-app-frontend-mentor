@@ -1,9 +1,18 @@
 import { taskList } from "./data.js";
 import { Task } from "./class/classTask.js";
 import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from "./dom.js";
-import { addTaskButton, clearButton, TabElements, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
+import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
 
 export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
+
+window.onload = () => {
+    const theme = localStorage.getItem('theme') ?
+        localStorage.getItem('theme') :
+        window.matchMedia('(prefers-color-scheme: dark)').matches ?
+            'dark-theme' :
+            'light-theme'
+    body.className = theme;
+}
 
 TabElements.forEach(tab => tab.addEventListener('click', (event) => {
     if (activeTabElement === event.target) {
@@ -25,6 +34,14 @@ TabElements.forEach(tab => tab.addEventListener('click', (event) => {
         taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
     }
 }))
+
+changeThemeButton.addEventListener('click', () => {
+    body.classList.toggle("light-theme");
+    body.classList.toggle("dark-theme");
+    const oldTheme = localStorage.getItem('theme');
+    const newTheme = localStorage.getItem('theme') === 'light-theme' ? 'dark-theme' : 'light-theme';
+    localStorage.setItem('theme', newTheme);
+})
 
 addTaskButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -50,14 +67,14 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
 }
 
 clearButton.addEventListener('click', () => {
-    const taskListContainerElementChildrenArray = [...taskListContainerElement.children]
-    const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length
+    const taskListContainerElementChildrenArray = [...taskListContainerElement.children];
+    const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length;
     taskListContainerElementChildrenArray.reverse().map((task, index) => {
         if (task.firstChild.checked === true) {
-            removeTaskItemElement(taskListChildrenArrayLength - index - 1)
-            taskList.clearComplete(task.children[1].innerText)
+            removeTaskItemElement(taskListChildrenArrayLength - index - 1);
+            taskList.clearComplete(task.children[1].innerText);
         }
-    })
+    });
 })
 
 const removeTaskItemContainerElement = (event) => {
