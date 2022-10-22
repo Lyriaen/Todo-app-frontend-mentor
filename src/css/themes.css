@@ -12,7 +12,6 @@
     --text-color-task-completed: hsl(233, 14%, 35%);
     --border-color: hsl(237, 14%, 26%);
 
-    --header-background-image: url(./../images/bg-desktop-dark.jpg);
     --theme-change-icon: url('./../images/icon-sun.svg');
 }
 
@@ -25,6 +24,25 @@
     --text-color-task-completed: hsl(233, 11%, 84%);
     --border-color: hsl(233, 11%, 84%);
 
-    --header-background-image: url(./../images/bg-desktop-light.jpg);
     --theme-change-icon: url('./../images/icon-moon.svg');
+}
+
+@media screen and (min-width: 750px) {
+    .dark-theme {
+        --header-background-image: url(./../images/bg-desktop-dark.jpg);
+    }
+
+    .light-theme {
+        --header-background-image: url(./../images/bg-desktop-light.jpg);
+    }
+}
+
+@media screen and (max-width: 749px) {
+    .dark-theme {
+        --header-background-image: url(./../images/bg-mobile-dark.jpg);
+    }
+
+    .light-theme {
+        --header-background-image: url(./../images/bg-mobile-light.jpg);
+    }
 }
