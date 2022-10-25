@@ -1,0 +1,42 @@
+@media screen and (min-width: 1440px) {
+    body {
+        background-size: 100% 300px;
+    }
+
+    .container {
+        max-width: 65vw;
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1439px) {
+    .container {
+        max-width: 80vw;
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 749px) {
+    body {
+        background-size: 100% 300px;
+    }
+
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .main__nav__button-container {
+        position: absolute;
+        bottom: -90px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: var(--background-color-main);
+    }
+}
+
+@media screen and (max-width: 375px) {
+    body {
+        background-size: auto 300px;
+    }
+}
