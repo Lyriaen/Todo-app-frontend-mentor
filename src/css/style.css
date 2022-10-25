@@ -166,6 +166,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    position: relative;
 }
 
 .main__nav__incomplete-task-counter-container {
@@ -189,6 +190,7 @@ body {
 
 .main__nav__button-container {
     display: flex;
+    justify-content: center;
     column-gap: 30px;
 }
 
