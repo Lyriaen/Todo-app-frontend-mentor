@@ -5,4 +5,8 @@ class Task {
         this.completed = completed;
         this.task = task;
     }
+
+    changeCompletedStatus(newStatus) {
+        this.completed = newStatus
+    }
 }
