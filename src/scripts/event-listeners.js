@@ -2,7 +2,7 @@ import { taskList } from "./data.js";
 import { Task } from "./class/classTask.js";
 import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from "./dom.js";
 import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
-import { handleDragEnd, handleDragOver, handleDragStart, handleDrop } from "./dragAndDropFunctions.js";
+import { handleDragEnd, handleDragOver, handleDragStart } from "./dragAndDropFunctions.js";
 
 export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
@@ -102,7 +102,6 @@ const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
     taskItemContainerElement.addEventListener('dragstart', handleDragStart)
     taskItemContainerElement.addEventListener('dragover', handleDragOver)
     taskItemContainerElement.addEventListener('dragend', handleDragEnd)
-    taskItemContainerElement.addEventListener('drop', handleDrop)
 }
 
 window.onbeforeunload = () => {
