@@ -2,6 +2,7 @@ import { taskList } from "./data.js";
 import { Task } from "./class/classTask.js";
 import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from "./dom.js";
 import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
+import { handleDragEnd, handleDragOver, handleDragStart, handleDrop } from "./dragAndDropFunctions.js";
 
 export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
 
@@ -64,6 +65,7 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
         removeTaskItemContainerElement(event);
         changeStateOfTaskElement(event);
     })
+    addEventListenerForDragAndDrop(taskItemContainerElement);
 }
 
 clearButton.addEventListener('click', () => {
@@ -94,6 +96,13 @@ const changeStateOfTaskElement = (event) => {
 const clearForm = () => {
     newItemForm.task.value = '';
     newItemForm.checkbox.checked = false;
+}
+
+const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
+    taskItemContainerElement.addEventListener('dragstart', handleDragStart)
+    taskItemContainerElement.addEventListener('dragover', handleDragOver)
+    taskItemContainerElement.addEventListener('dragend', handleDragEnd)
+    taskItemContainerElement.addEventListener('drop', handleDrop)
 }
 
 window.onbeforeunload = () => {

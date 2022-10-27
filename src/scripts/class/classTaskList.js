@@ -48,8 +48,8 @@ class TaskList {
     }
 
     createTaskList = () => {
-        this.list.map((taskItem) => {
-            createTaskListElement(taskItem);
+        this.list.map((taskItem, index) => {
+            createTaskListElement(taskItem, index);
         })
     }
 

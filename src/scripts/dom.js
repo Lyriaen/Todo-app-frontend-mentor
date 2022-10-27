@@ -15,9 +15,11 @@ const clearTaskListContainerElement = () => {
     taskListContainerElement.replaceChildren();
 }
 
-const createTaskListElement = (taskItem) => {
+const createTaskListElement = (taskItem, index) => {
     const taskItemContainerElement = document.createElement('li');
     taskItemContainerElement.classList.add('main__task-list__item');
+    taskItemContainerElement.setAttribute('draggable', true);
+    taskItemContainerElement.setAttribute('id', 'task-' + index);
     addEventListenersOnListElement(taskItemContainerElement);
     taskListContainerElement.appendChild(taskItemContainerElement);
     taskItemContainerElement.appendChild(createCheckboxElement(taskItem.completed));
