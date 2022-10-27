@@ -137,7 +137,6 @@ body {
     position: relative;
     border: none;
     padding: 0;
-    opacity: 0;
     flex-shrink: 0;
 }
 

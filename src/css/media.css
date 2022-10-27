@@ -8,13 +8,13 @@
     }
 }
 
-@media screen and (min-width: 750px) and (max-width: 1439px) {
+@media screen and (min-width: 769px) and (max-width: 1439px) {
     .container {
         max-width: 80vw;
     }
 }
 
-@media screen and (min-width: 376px) and (max-width: 749px) {
+@media screen and (min-width: 376px) and (max-width: 768px) {
     body {
         background-size: 100% 300px;
     }
@@ -24,7 +24,13 @@
     }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (min-width: 769px) {
+    .main__task-list__item__remove-button {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
     .main__nav__button-container {
         position: absolute;
         bottom: -90px;
@@ -32,6 +38,10 @@
         width: 100%;
         padding: 20px;
         background-color: var(--background-color-main);
+    }
+
+    .main__task-list__item__remove-button {
+        opacity: 1;
     }
 }
 
