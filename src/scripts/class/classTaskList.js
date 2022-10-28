@@ -24,8 +24,7 @@ class TaskList {
     }
 
     removeTask = (event) => {
-        const taskText = event.currentTarget.querySelector('.main__task-list__item__task').textContent;
-        const indexOfItemToRemove = this.findIndex(taskText);
+        const indexOfItemToRemove = this.findIndexOfElement(event.currentTarget);
         if (!this.list[indexOfItemToRemove].completed) {
             this.incompleteTaskCounter.decrease();
         }
@@ -37,13 +36,19 @@ class TaskList {
         this.saveTaskList();
     }
 
-    findIndex = (taskText) => {
+    findIndexOfElement = (element) => {
+        const elementText = element.querySelector('.main__task-list__item__task').textContent;
+        const elementIndex = this.findIndexByText(elementText);
+        return elementIndex;
+    }
+
+    findIndexByText = (taskText) => {
         const index = this.list.map(taskOfList => taskOfList.task).indexOf(taskText);
         return index;
     }
 
     clearComplete = (taskText) => {
-        const indexOfItemToRemove = this.findIndex(taskText);
+        const indexOfItemToRemove = this.findIndexByText(taskText);
         this.removeTaskOnIndexFromList(indexOfItemToRemove);
     }
 
@@ -59,10 +64,9 @@ class TaskList {
 
     changeTaskStatus = (event) => {
         const newCompletedStatus = event.currentTarget.querySelector('.checkbox').checked;
-        const taskText = event.currentTarget.querySelector('.main__task-list__item__task').textContent;
-        const indexOfItemToChange = this.findIndex(taskText);
-        const taskToChange = this.list[indexOfItemToChange]
-        taskToChange.changeCompletedStatus(newCompletedStatus)
+        const indexOfItemToChange = this.findIndexOfElement(event.currentTarget);
+        const taskToChange = this.list[indexOfItemToChange];
+        taskToChange.changeCompletedStatus(newCompletedStatus);
         newCompletedStatus ?
             this.incompleteTaskCounter.decrease() :
             this.incompleteTaskCounter.increase();
@@ -71,5 +75,14 @@ class TaskList {
 
     saveTaskList = () => {
         localStorage.setItem('taskList', JSON.stringify(this.list));
+    }
+
+    swapTasks = (draggedElement, overElement) => {
+        const draggedElementIndex = this.findIndexOfElement(draggedElement);
+        const overElementIndex = this.findIndexOfElement(overElement);
+        const temp = this.list[draggedElementIndex];
+        this.list[draggedElementIndex] = this.list[overElementIndex];
+        this.list[overElementIndex] = temp;
+        this.saveTaskList();
     }
 }
