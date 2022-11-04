@@ -199,3 +199,13 @@ body {
 .main__nav__button--active {
     color: var(--text-color-active-button);
 }
+
+.footer {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.footer_text {
+    color: var(--text-color-button);
+}
