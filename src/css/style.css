@@ -164,16 +164,22 @@ body {
 }
 
 .main__nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    /* justify-content: space-between;
+    align-items: center; */
+    align-items: stretch;
+    /* background-color: var(--background-color-main); */
+    /* position: relative; */
+}
+
+.main__nav > * {
     padding: 20px;
-    position: relative;
 }
 
 .main__nav__incomplete-task-counter-container {
     color: var(--text-color-button);
     font-weight: 700;
+    grid-area: counter-container;
 }
 
 .button {
@@ -184,6 +190,7 @@ body {
     cursor: pointer;
     color: var(--text-color-button);
     padding: 0;
+    justify-self: end;
 }
 
 .button:hover {
@@ -192,12 +199,19 @@ body {
 
 .main__nav__button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     column-gap: 30px;
+    grid-area: button-container;
+    justify-self: center;
 }
 
 .main__nav__button--active {
     color: var(--text-color-active-button);
+}
+
+.main__nav__clear-button-container {
+    grid-area: clear-button;
+    text-align: right;
 }
 
 .footer {

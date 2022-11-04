@@ -24,19 +24,38 @@
     }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 800px) {
     .main__task-list__item__remove-button {
         opacity: 0;
     }
+
+    .main__nav {
+        background-color: var(--background-color-main);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "counter-container button-container clear-button";
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 799px) {
     .main__nav__button-container {
-        position: absolute;
-        bottom: -90px;
-        left: 0;
+        /* position: absolute; */
+        /* bottom: -90px;
+        left: 0; */
         width: 100%;
         padding: 20px;
+        background-color: var(--background-color-main);
+    }
+
+    .main__nav {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "counter-container  clear-button"
+            "button-container   button-container";
+        row-gap: 30px;
+    }
+
+    .main__nav > * {
         background-color: var(--background-color-main);
     }
 
