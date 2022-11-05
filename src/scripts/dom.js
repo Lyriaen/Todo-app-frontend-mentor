@@ -16,12 +16,17 @@ const clearTaskListContainerElement = () => {
 }
 
 const createTaskListElement = (taskItem, index) => {
-    const taskItemContainerElement = document.createElement('li');
+    const liElement = document.createElement('li')
+    setTimeout(function () {
+        liElement.classList.add('show');
+    }, 10);
+    const taskItemContainerElement = document.createElement('div');
     taskItemContainerElement.classList.add('main__task-list__item');
     taskItemContainerElement.setAttribute('draggable', true);
     taskItemContainerElement.setAttribute('id', 'task-' + index);
     addEventListenersOnListElement(taskItemContainerElement);
-    taskListContainerElement.appendChild(taskItemContainerElement);
+    liElement.appendChild(taskItemContainerElement);
+    taskListContainerElement.appendChild(liElement);
     taskItemContainerElement.appendChild(createCheckboxElement(taskItem.completed));
     taskItemContainerElement.appendChild(createParagraphElement(taskItem.task));
     taskItemContainerElement.appendChild(createDeleteElement());
@@ -55,5 +60,6 @@ const refreshIncompleteTaskCounterElement = (count) => {
 }
 
 const removeTaskItemElement = (index) => {
+    console.log(taskListContainerElement)
     taskListContainerElement.removeChild(taskListContainerElement.children[index]);
 }

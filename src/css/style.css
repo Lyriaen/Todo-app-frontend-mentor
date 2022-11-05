@@ -76,11 +76,33 @@ body {
     column-gap: 20px;
     align-items: center;
     padding: 20px;
-    border-bottom: 2px solid var(--border-color);
 }
 
 .main__task-list__item__task {
     flex-grow: 1;
+}
+
+li {
+    height: 0;
+    overflow: hidden;
+    transition: all 2s ease;
+    border-bottom: 2px solid var(--border-color);
+}
+
+li.show {
+
+    height: 67px;
+}
+
+.fade li {
+    transition: all 2s ease;
+    opacity: 0;
+
+}
+
+.fade li.show {
+    opacity: 1;
+
 }
 
 .checkbox {

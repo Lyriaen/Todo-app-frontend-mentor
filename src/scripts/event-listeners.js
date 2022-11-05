@@ -69,7 +69,7 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
 }
 
 clearButton.addEventListener('click', () => {
-    const taskListContainerElementChildrenArray = [...taskListContainerElement.children];
+    const taskListContainerElementChildrenArray = [...taskListContainerElement];
     const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length;
     taskListContainerElementChildrenArray.reverse().map((task, index) => {
         if (task.firstChild.checked === true) {
@@ -81,6 +81,7 @@ clearButton.addEventListener('click', () => {
 
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
+        console.log(event.currentTarget.parentElement.classList)
         event.currentTarget.parentElement.removeChild(event.currentTarget);
         taskList.removeTask(event);
     }
