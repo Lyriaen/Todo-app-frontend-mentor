@@ -69,11 +69,21 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
 }
 
 clearButton.addEventListener('click', () => {
-    const taskListContainerElementChildrenArray = [...taskListContainerElement];
+    const taskItems = document.querySelectorAll('.main__task-list__item')
+    let taskListContainerElementChildrenArray = [...taskItems];
     const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length;
     taskListContainerElementChildrenArray.reverse().map((task, index) => {
+        // console.log(task)
         if (task.firstChild.checked === true) {
-            removeTaskItemElement(taskListChildrenArrayLength - index - 1);
+            task.parentElement.addEventListener('transitionend', (event) => {
+                if (event.propertyName === 'opacity') {
+                    // console.log(taskListChildrenArrayLength)
+                    removeTaskItemElement(event, index)
+
+                }
+            })
+            task.parentElement.classList.remove('show')
+            // removeTaskItemElement(taskListChildrenArrayLength - index - 1);
             taskList.clearComplete(task.children[1].innerText);
         }
     });
@@ -81,7 +91,7 @@ clearButton.addEventListener('click', () => {
 
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
-        console.log(event.currentTarget.parentElement.classList)
+        // console.log(event.currentTarget.parentElement.classList)
         event.currentTarget.parentElement.removeChild(event.currentTarget);
         taskList.removeTask(event);
     }

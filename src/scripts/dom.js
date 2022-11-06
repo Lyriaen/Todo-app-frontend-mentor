@@ -59,7 +59,10 @@ const refreshIncompleteTaskCounterElement = (count) => {
     incompleteTaskCounterElement.textContent = `${count} items left`;
 }
 
-const removeTaskItemElement = (index) => {
-    console.log(taskListContainerElement)
+const removeTaskItemElement = (event, index) => {
+    event.stopPropagation()
+    console.log(index)
+    // console.log(taskListContainerElement.children[index])
+    // console.log(taskListContainerElement.children[index])
     taskListContainerElement.removeChild(taskListContainerElement.children[index]);
 }

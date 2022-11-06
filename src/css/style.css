@@ -85,7 +85,7 @@ body {
 li {
     height: 0;
     overflow: hidden;
-    transition: all 2s ease;
+    transition: all 0.9s ease;
     border-bottom: 2px solid var(--border-color);
 }
 
@@ -95,7 +95,7 @@ li.show {
 }
 
 .fade li {
-    transition: all 2s ease;
+    transition: all 1s ease;
     opacity: 0;
 
 }
