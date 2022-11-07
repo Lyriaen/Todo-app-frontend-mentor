@@ -14,10 +14,22 @@ export { createTaskListElement, clearTaskListContainerElementAndCreateNew, remov
 
 const clearTaskListContainerElementAndCreateNew = (activeTab) => {
     const elementArray = [...taskListContainerElement.children]
-    // console.log(elementArray)
+    if (elementArray.length === 0) {
+        if (activeTab === 'All') {
+            taskList.createTaskList();
+            return;
+        }
+        if (activeTab === 'Completed') {
+            taskList.list.filter(task => task.completed === true).map(task => createTaskListElement(task));
+            return;
+        }
+        if (activeTab === 'Active') {
+            taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
+        }
+        return
+    }
     taskListContainerElement.addEventListener('transitionend', () => {
         taskListContainerElement.replaceChildren();
-        console.log('koniec')
         if (activeTab === 'All') {
             taskList.createTaskList();
             return;
