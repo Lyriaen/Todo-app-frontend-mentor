@@ -1,6 +1,6 @@
 import { taskList } from "./data.js";
 import { Task } from "./class/classTask.js";
-import { createTaskListElement, clearTaskListContainerElement, removeTaskItemElement } from "./dom.js";
+import { createTaskListElement, clearTaskListContainerElementAndCreateNew, removeTaskItemElement } from "./dom.js";
 import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
 import { handleDragEnd, handleDragOver, handleDragStart } from "./dragAndDropFunctions.js";
 
@@ -22,18 +22,18 @@ TabElements.forEach(tab => tab.addEventListener('click', (event) => {
     event.target.classList.toggle('main__nav__button--active');
     activeTabElement.classList.toggle('main__nav__button--active');
     changeActiveTabElement(event.target);
-    clearTaskListContainerElement();
-    if (event.target.textContent === 'All') {
-        taskList.createTaskList();
-        return;
-    }
-    if (event.target.textContent === 'Completed') {
-        taskList.list.filter(task => task.completed === true).map(task => createTaskListElement(task));
-        return;
-    }
-    if (event.target.textContent === 'Active') {
-        taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
-    }
+    clearTaskListContainerElementAndCreateNew(event.target.textContent);
+    // if (event.target.textContent === 'All') {
+    //     taskList.createTaskList();
+    //     return;
+    // }
+    // if (event.target.textContent === 'Completed') {
+    //     taskList.list.filter(task => task.completed === true).map(task => createTaskListElement(task));
+    //     return;
+    // }
+    // if (event.target.textContent === 'Active') {
+    //     taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
+    // }
 }))
 
 changeThemeButton.addEventListener('click', () => {
