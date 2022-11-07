@@ -91,8 +91,12 @@ clearButton.addEventListener('click', () => {
 
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
-        // console.log(event.currentTarget.parentElement.classList)
-        event.currentTarget.parentElement.removeChild(event.currentTarget);
+        const liElement = event.currentTarget.parentElement
+        const ulElement = event.currentTarget.parentElement.parentElement
+        ulElement.addEventListener('transitionend', () => {
+            ulElement.removeChild(liElement);
+        }, { once: true })
+        liElement.classList.remove('show')
         taskList.removeTask(event);
     }
 }
