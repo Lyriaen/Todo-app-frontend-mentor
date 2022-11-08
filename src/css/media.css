@@ -39,9 +39,6 @@
 
 @media screen and (max-width: 799px) {
     .main__nav__button-container {
-        /* position: absolute; */
-        /* bottom: -90px;
-        left: 0; */
         width: 100%;
         padding: 20px;
         background-color: var(--background-color-main);

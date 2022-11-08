@@ -1,16 +1,8 @@
 import { addEventListenersOnListElement } from "./event-listeners.js";
-import { taskListContainerElement, incompleteTaskCounterElement } from './querySelectors.js';
+import { taskListContainerElement, incompleteTaskCounterElement } from "./querySelectors.js";
 import { taskList } from "./data.js";
 
-export { createTaskListElement, clearTaskListContainerElementAndCreateNew, removeTaskItemElement, refreshIncompleteTaskCounterElement };
-
-/* CreateTaskListElement create <li> element in <ul> list like:
-<li class='main__task-list__item'>
-    <input class='checkbox main__task-list__item__checkbox' type='checkbox'>
-    <p class='main__task-list__item__task'>Task to do</p>
-    <button class='button main__task-list__item__remove-button'></button>
-</li> 
-*/
+export { createTaskListElement, clearTaskListContainerElementAndCreateNew, refreshIncompleteTaskCounterElement };
 
 const clearTaskListContainerElementAndCreateNew = (activeTab) => {
     const elementArray = [...taskListContainerElement.children]
@@ -81,12 +73,4 @@ const createDeleteElement = () => {
 
 const refreshIncompleteTaskCounterElement = (count) => {
     incompleteTaskCounterElement.textContent = `${count} items left`;
-}
-
-const removeTaskItemElement = (event, index) => {
-    event.stopPropagation()
-    console.log(index)
-    // console.log(taskListContainerElement.children[index])
-    // console.log(taskListContainerElement.children[index])
-    taskListContainerElement.removeChild(taskListContainerElement.children[index]);
 }

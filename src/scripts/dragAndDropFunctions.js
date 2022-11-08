@@ -1,4 +1,4 @@
-import { taskList } from './data.js'
+import { taskList } from "./data.js"
 
 export { handleDragStart, handleDragOver, handleDragEnd }
 
@@ -24,7 +24,7 @@ const handleDragOver = (event) => {
         if (directionOfMove === 'up') {
             taskListContainer.insertBefore(draggedElement, overElement);
         }
-        taskList.swapTasks(draggedElement, overElement)
+        taskList.swapTasks(draggedElement, overElement);
     };
 }
 

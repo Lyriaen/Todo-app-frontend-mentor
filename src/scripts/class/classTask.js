@@ -7,6 +7,6 @@ class Task {
     }
 
     changeCompletedStatus(newStatus) {
-        this.completed = newStatus
+        this.completed = newStatus;
     }
 }
