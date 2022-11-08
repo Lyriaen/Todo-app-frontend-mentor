@@ -41,19 +41,19 @@ const createActiveTab = (activeTab) => {
 
 const createTaskListElement = (taskItem, index) => {
     const liElement = document.createElement('li')
+    liElement.setAttribute('draggable', true);
     setTimeout(function () {
         liElement.classList.add('show');
     }, 10);
     const taskItemContainerElement = document.createElement('div');
     taskItemContainerElement.classList.add('main__task-list__item');
-    taskItemContainerElement.setAttribute('draggable', true);
     taskItemContainerElement.setAttribute('id', 'task-' + index);
-    addEventListenersOnListElement(taskItemContainerElement);
     liElement.appendChild(taskItemContainerElement);
     taskListContainerElement.appendChild(liElement);
     taskItemContainerElement.appendChild(createCheckboxElement(taskItem.completed));
     taskItemContainerElement.appendChild(createParagraphElement(taskItem.task));
     taskItemContainerElement.appendChild(createDeleteElement());
+    addEventListenersOnListElement(taskItemContainerElement, taskItemContainerElement.parentElement);
 }
 
 const createCheckboxElement = (completed) => {

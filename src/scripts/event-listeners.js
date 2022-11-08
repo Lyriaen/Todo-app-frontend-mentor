@@ -57,7 +57,7 @@ addTaskButton.addEventListener('click', (event) => {
     clearForm();
 })
 
-const addEventListenersOnListElement = (taskItemContainerElement) => {
+const addEventListenersOnListElement = (taskItemContainerElement, parentEl) => {
     taskItemContainerElement.addEventListener('change', (event) => {
         taskList.changeTaskStatus(event);
     })
@@ -114,9 +114,10 @@ const clearForm = () => {
 }
 
 const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
-    taskItemContainerElement.addEventListener('dragstart', handleDragStart)
-    taskItemContainerElement.addEventListener('dragover', handleDragOver)
-    taskItemContainerElement.addEventListener('dragend', handleDragEnd)
+    const liElement = taskItemContainerElement.parentElement
+    liElement.addEventListener('dragstart', handleDragStart)
+    liElement.addEventListener('dragover', handleDragOver)
+    liElement.addEventListener('dragend', handleDragEnd)
 }
 
 window.onbeforeunload = () => {
