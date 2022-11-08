@@ -1,5 +1,5 @@
 import { IncompleteTaskCounter } from "./classIncompleteTaskCounter.js";
-import { createTaskListElement, removeTaskItemElement } from "../dom.js";
+import { createTaskListElement } from "../dom.js";
 import { Task } from "./classTask.js";
 
 export { TaskList };

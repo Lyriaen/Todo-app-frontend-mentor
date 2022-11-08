@@ -13,7 +13,6 @@ body {
     background-image: var(--header-background-image);
     background-repeat: no-repeat;
     background-position: top;
-    /* background-size: contain 300px; */
 }
 
 .container {
@@ -89,10 +88,6 @@ li {
     border-bottom: 2px solid var(--border-color);
 }
 
-.hide {
-    display: none;
-}
-
 li.show {
 
     height: 67px;
@@ -120,7 +115,6 @@ li.show {
     border: 2px solid var(--border-color);
     border-radius: 50%;
     flex-shrink: 0;
-    /* transform: translateY(-0.075em); */
 }
 
 .checkbox:hover {
@@ -191,11 +185,7 @@ li.show {
 
 .main__nav {
     display: grid;
-    /* justify-content: space-between;
-    align-items: center; */
     align-items: stretch;
-    /* background-color: var(--background-color-main); */
-    /* position: relative; */
 }
 
 .main__nav > * {

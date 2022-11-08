@@ -1,4 +1,4 @@
-import { TaskList } from './class/classTaskList.js';
+import { TaskList } from "./class/classTaskList.js";
 
 export { taskList }
 

@@ -1,17 +1,17 @@
 import { taskList } from "./data.js";
 import { Task } from "./class/classTask.js";
-import { createTaskListElement, clearTaskListContainerElementAndCreateNew, removeTaskItemElement } from "./dom.js";
-import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement } from "./querySelectors.js";
+import { createTaskListElement, clearTaskListContainerElementAndCreateNew } from "./dom.js";
+import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement, getAllTaskItems } from "./querySelectors.js";
 import { handleDragEnd, handleDragOver, handleDragStart } from "./dragAndDropFunctions.js";
 
-export { removeTaskItemContainerElement, addEventListenersOnListElement, removeTaskItemElement };
+export { removeTaskItemContainerElement, addEventListenersOnListElement };
 
 window.onload = () => {
     const theme = localStorage.getItem('theme') ?
         localStorage.getItem('theme') :
         window.matchMedia('(prefers-color-scheme: dark)').matches ?
             'dark-theme' :
-            'light-theme'
+            'light-theme';
     body.className = theme;
 }
 
@@ -23,17 +23,6 @@ TabElements.forEach(tab => tab.addEventListener('click', (event) => {
     activeTabElement.classList.toggle('main__nav__button--active');
     changeActiveTabElement(event.target);
     clearTaskListContainerElementAndCreateNew(event.target.textContent);
-    // if (event.target.textContent === 'All') {
-    //     taskList.createTaskList();
-    //     return;
-    // }
-    // if (event.target.textContent === 'Completed') {
-    //     taskList.list.filter(task => task.completed === true).map(task => createTaskListElement(task));
-    //     return;
-    // }
-    // if (event.target.textContent === 'Active') {
-    //     taskList.list.filter(task => task.completed === false).map(task => createTaskListElement(task));
-    // }
 }))
 
 changeThemeButton.addEventListener('click', () => {
@@ -69,37 +58,32 @@ const addEventListenersOnListElement = (taskItemContainerElement) => {
 }
 
 clearButton.addEventListener('click', () => {
-    const taskItems = document.querySelectorAll('.main__task-list__item')
+    const taskItems = getAllTaskItems();
     let taskListContainerElementChildrenArray = [...taskItems];
     const taskListChildrenArrayLength = taskListContainerElementChildrenArray.length;
     taskListContainerElementChildrenArray.reverse().map((task, index) => {
-        // console.log(task)
         if (task.firstChild.checked === true) {
             task.parentElement.addEventListener('transitionend', (event) => {
                 if (event.propertyName === 'opacity') {
-                    event.stopPropagation()
-                    // console.log(taskListChildrenArrayLength)
-                    // removeTaskItemElement(event, index)
+                    event.stopPropagation();
                     taskListContainerElement.removeChild(task.parentElement);
-                    // task.parentElement.classList.add('hide')
                     taskList.clearComplete(task.children[1].innerText);
 
                 }
             })
-            task.parentElement.classList.remove('show')
-            // removeTaskItemElement(taskListChildrenArrayLength - index - 1);
+            task.parentElement.classList.remove('show');
         }
     });
 })
 
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
-        const liElement = event.currentTarget.parentElement
-        const ulElement = event.currentTarget.parentElement.parentElement
+        const liElement = event.currentTarget.parentElement;
+        const ulElement = event.currentTarget.parentElement.parentElement;
         ulElement.addEventListener('transitionend', () => {
             ulElement.removeChild(liElement);
         }, { once: true })
-        liElement.classList.remove('show')
+        liElement.classList.remove('show');
         taskList.removeTask(event);
     }
 }
@@ -117,9 +101,9 @@ const clearForm = () => {
 }
 
 const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
-    taskItemContainerElement.addEventListener('dragstart', handleDragStart)
-    taskItemContainerElement.addEventListener('dragover', handleDragOver)
-    taskItemContainerElement.addEventListener('dragend', handleDragEnd)
+    taskItemContainerElement.addEventListener('dragstart', handleDragStart);
+    taskItemContainerElement.addEventListener('dragover', handleDragOver);
+    taskItemContainerElement.addEventListener('dragend', handleDragEnd);
 }
 
 window.onbeforeunload = () => {
