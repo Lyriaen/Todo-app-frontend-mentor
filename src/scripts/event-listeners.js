@@ -77,14 +77,17 @@ clearButton.addEventListener('click', () => {
         if (task.firstChild.checked === true) {
             task.parentElement.addEventListener('transitionend', (event) => {
                 if (event.propertyName === 'opacity') {
+                    event.stopPropagation()
                     // console.log(taskListChildrenArrayLength)
-                    removeTaskItemElement(event, index)
+                    // removeTaskItemElement(event, index)
+                    taskListContainerElement.removeChild(task.parentElement);
+                    // task.parentElement.classList.add('hide')
+                    taskList.clearComplete(task.children[1].innerText);
 
                 }
             })
             task.parentElement.classList.remove('show')
             // removeTaskItemElement(taskListChildrenArrayLength - index - 1);
-            taskList.clearComplete(task.children[1].innerText);
         }
     });
 })

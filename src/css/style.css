@@ -89,6 +89,10 @@ li {
     border-bottom: 2px solid var(--border-color);
 }
 
+.hide {
+    display: none;
+}
+
 li.show {
 
     height: 67px;
