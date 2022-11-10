@@ -60,6 +60,22 @@ body {
     caret-color: var(--text-color-active-button);
 }
 
+.main__form-contanier__submit-button {
+    transition: all 1s ease;
+    opacity: 0.1;
+}
+
+.main__form-contanier__input:not(:placeholder-shown) + .main__form-contanier__submit-button {
+    color: var(--text-color-active-button);
+    opacity: 1;
+
+}
+
+.main__form-contanier__input:not(:placeholder-shown) + .main__form-contanier__submit-button:hover {
+    text-shadow: 0 0 12px var(--text-color-active-button);
+    transform: scale(1.2);
+}
+
 .main__form-contanier__input:focus {
     outline: none;
 }
