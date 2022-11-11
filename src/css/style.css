@@ -209,9 +209,22 @@ li.show {
 }
 
 .main__nav__incomplete-task-counter-container {
+    display: flex;
+    gap: 10px;
     color: var(--text-color-button);
     font-weight: 700;
     grid-area: counter-container;
+    transition: all 1s ease;
+}
+
+.main__nav__incomplete-task-counter-container__counter {
+    width: 15px;
+    text-align: center;
+    transition: all 0.25s ease;
+}
+
+.main__nav__incomplete-task-counter-container__counter.change-counter {
+    transform: rotate3d(0, 1, 0, 90deg);
 }
 
 .button {

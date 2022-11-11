@@ -72,5 +72,9 @@ const createDeleteElement = () => {
 }
 
 const refreshIncompleteTaskCounterElement = (count) => {
-    incompleteTaskCounterElement.textContent = `${count} items left`;
+    incompleteTaskCounterElement.addEventListener('transitionend', () => {
+        incompleteTaskCounterElement.textContent = `${count}`;
+        incompleteTaskCounterElement.classList.remove('change-counter')
+    }, { once: true })
+    incompleteTaskCounterElement.classList.add('change-counter')
 }

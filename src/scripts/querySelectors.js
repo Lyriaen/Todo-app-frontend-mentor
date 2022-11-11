@@ -3,7 +3,7 @@ export { body, taskListContainerElement, taskItems, incompleteTaskCounterElement
 const body = document.querySelector('body');
 const taskListContainerElement = document.querySelector('.main__task-list');
 const taskItems = document.querySelectorAll('.main__task-list__item')
-const incompleteTaskCounterElement = document.querySelector('.main__nav__incomplete-task-counter-container');
+const incompleteTaskCounterElement = document.querySelector('.main__nav__incomplete-task-counter-container__counter');
 const addTaskButton = document.querySelector('.main__form-contanier__submit-button');
 const clearButton = document.querySelector('.main__nav__clear-button');
 const TabElements = document.querySelectorAll('.main__nav__button');
