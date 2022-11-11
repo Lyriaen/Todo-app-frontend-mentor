@@ -14,15 +14,16 @@ const handleDragStart = (event) => {
 const handleDragOver = (event) => {
     event.preventDefault();
     const taskListContainer = event.target.closest('ul');
+
     const draggedElement = document.querySelector('.dragged');
     const overElement = event.currentTarget;
     const directionOfMove = checkMouseMove(event);
     if (draggedElement !== overElement) {
         if (directionOfMove === 'down') {
-            taskListContainer.insertBefore(overElement, draggedElement);
+            taskListContainer.insertBefore(overElement.parentElement, draggedElement);
         }
         if (directionOfMove === 'up') {
-            taskListContainer.insertBefore(draggedElement, overElement);
+            taskListContainer.insertBefore(draggedElement, overElement.parentElement);
         }
         taskList.swapTasks(draggedElement, overElement);
     };
@@ -39,7 +40,7 @@ const checkMouseMove = (event) => {
 }
 
 const handleDragEnd = (event) => {
-    const draggedElement = event.currentTarget;
+    const draggedElement = event.target;
     draggedElement.classList.remove('dragged');
     draggedElement.style = '';
     lastMousePosition = { y: null };

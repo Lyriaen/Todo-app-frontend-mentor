@@ -101,9 +101,9 @@ const clearForm = () => {
 }
 
 const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
-    taskItemContainerElement.addEventListener('dragstart', handleDragStart);
+    taskItemContainerElement.parentElement.addEventListener('dragstart', handleDragStart);
     taskItemContainerElement.addEventListener('dragover', handleDragOver);
-    taskItemContainerElement.addEventListener('dragend', handleDragEnd);
+    taskItemContainerElement.parentElement.addEventListener('dragend', handleDragEnd);
 }
 
 window.onbeforeunload = () => {
