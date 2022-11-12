@@ -41,9 +41,13 @@ addTaskButton.addEventListener('click', (event) => {
         return;
     }
     const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value);
-    createTaskListElement(taskItem);
-    taskList.addTask(taskItem);
-    clearForm();
+    if (!taskList.checkIfTaskExist(taskItem.task)) {
+        createTaskListElement(taskItem);
+        taskList.addTask(taskItem);
+        clearForm();
+        return;
+    }
+    alert('This task already exist in the list');
 })
 
 const addEventListenersOnListElement = (taskItemContainerElement, parentEl) => {

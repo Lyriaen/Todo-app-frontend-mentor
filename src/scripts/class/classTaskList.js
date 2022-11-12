@@ -58,6 +58,10 @@ class TaskList {
         })
     }
 
+    checkIfTaskExist = (taskText) => {
+        return this.findIndexByText(taskText) === -1 ? false : true;
+    }
+
     checkIfTaskListExist = () => {
         return localStorage.getItem('taskList') === null ? false : true;
     }
