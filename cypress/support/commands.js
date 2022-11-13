@@ -23,3 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('addTask', (task, statusChecked) => {
+    if (statusChecked) {
+        cy.get('.main__form-contanier__checkbox').click()
+    }
+    cy.get('.main__form-contanier__input')
+        .type(task)
+        .type('{enter}')
+})
