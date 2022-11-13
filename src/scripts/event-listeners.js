@@ -40,7 +40,7 @@ addTaskButton.addEventListener('click', (event) => {
         alert('Task is empty');
         return;
     }
-    const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value);
+    const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value.trim());
     if (!taskList.checkIfTaskExist(taskItem.task)) {
         createTaskListElement(taskItem);
         taskList.addTask(taskItem);
