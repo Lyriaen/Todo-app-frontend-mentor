@@ -1,4 +1,4 @@
-import { addEventListenersOnListElement } from "./event-listeners.js";
+// import { addEventListenersOnListElement } from "./event-listeners.js";
 import { taskListContainerElement, incompleteTaskCounterElement } from "./querySelectors.js";
 import { taskList } from "./data.js";
 
@@ -45,7 +45,7 @@ const createTaskListElement = (taskItem, index) => {
     taskItemContainerElement.appendChild(createCheckboxElement(taskItem.completed));
     taskItemContainerElement.appendChild(createParagraphElement(taskItem.task));
     taskItemContainerElement.appendChild(createDeleteElement());
-    addEventListenersOnListElement(taskItemContainerElement, taskItemContainerElement.parentElement);
+    // addEventListenersOnListElement(taskItemContainerElement, taskItemContainerElement.parentElement);
 }
 
 const createCheckboxElement = (completed) => {

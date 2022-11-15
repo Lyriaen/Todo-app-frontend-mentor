@@ -24,7 +24,7 @@ class TaskList {
     }
 
     removeTask = (event) => {
-        const indexOfItemToRemove = this.findIndexOfElement(event.currentTarget);
+        const indexOfItemToRemove = this.findIndexOfElement(event.target.parentElement);
         if (!this.list[indexOfItemToRemove].completed) {
             this.incompleteTaskCounter.decrease();
         }
@@ -67,7 +67,7 @@ class TaskList {
     }
 
     changeTaskStatus = (event) => {
-        const newCompletedStatus = event.currentTarget.querySelector('.checkbox').checked;
+        const newCompletedStatus = event.target.checked;
         const indexOfItemToChange = this.findIndexOfElement(event.currentTarget);
         const taskToChange = this.list[indexOfItemToChange];
         taskToChange.changeCompletedStatus(newCompletedStatus);

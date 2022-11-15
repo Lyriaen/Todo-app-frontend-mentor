@@ -4,7 +4,7 @@ import { createTaskListElement, clearTaskListContainerElementAndCreateNew } from
 import { body, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, taskListContainerElement, getAllTaskItems } from "./querySelectors.js";
 import { handleDragEnd, handleDragOver, handleDragStart } from "./dragAndDropFunctions.js";
 
-export { removeTaskItemContainerElement, addEventListenersOnListElement };
+export { removeTaskItemContainerElement };
 
 window.onload = () => {
     const theme = localStorage.getItem('theme') ?
@@ -50,16 +50,27 @@ addTaskButton.addEventListener('click', (event) => {
     alert('This task already exist in the list');
 })
 
-const addEventListenersOnListElement = (taskItemContainerElement, parentEl) => {
-    taskItemContainerElement.addEventListener('change', (event) => {
-        taskList.changeTaskStatus(event);
-    })
-    taskItemContainerElement.addEventListener('click', (event) => {
-        removeTaskItemContainerElement(event);
-        changeStateOfTaskElement(event);
-    })
-    addEventListenerForDragAndDrop(taskItemContainerElement);
+const removeTaskItemContainerElement = (event) => {
+    if ((event.target.tagName === 'BUTTON')) {
+        const liElement = event.target.parentElement.parentElement;
+        console.log(liElement)
+        const ulElement = event.target.parentElement.parentElement.parentElement;
+        console.log(ulElement)
+        ulElement.addEventListener('transitionend', () => {
+            ulElement.removeChild(liElement);
+        }, { once: true })
+        liElement.classList.remove('show');
+        taskList.removeTask(event);
+    }
 }
+taskListContainerElement.addEventListener('click', removeTaskItemContainerElement
+)
+
+taskListContainerElement.addEventListener('change', (event) => {
+    if ((event.target.tagName === 'INPUT'))
+        taskList.changeTaskStatus(event);
+})
+
 
 clearButton.addEventListener('click', () => {
     const taskItems = getAllTaskItems();
@@ -80,17 +91,17 @@ clearButton.addEventListener('click', () => {
     });
 })
 
-const removeTaskItemContainerElement = (event) => {
-    if ((event.target.tagName === 'BUTTON')) {
-        const liElement = event.currentTarget.parentElement;
-        const ulElement = event.currentTarget.parentElement.parentElement;
-        ulElement.addEventListener('transitionend', () => {
-            ulElement.removeChild(liElement);
-        }, { once: true })
-        liElement.classList.remove('show');
-        taskList.removeTask(event);
-    }
-}
+// const removeTaskItemContainerElement = (event) => {
+//     if ((event.target.tagName === 'BUTTON')) {
+//         const liElement = event.currentTarget.parentElement;
+//         const ulElement = event.currentTarget.parentElement.parentElement;
+//         ulElement.addEventListener('transitionend', () => {
+//             ulElement.removeChild(liElement);
+//         }, { once: true })
+//         liElement.classList.remove('show');
+//         taskList.removeTask(event);
+//     }
+// }
 
 const changeStateOfTaskElement = (event) => {
     if ((event.target.tagName === 'P')) {
