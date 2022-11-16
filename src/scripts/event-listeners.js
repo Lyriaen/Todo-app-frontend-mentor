@@ -50,6 +50,16 @@ addTaskButton.addEventListener('click', (event) => {
     alert('This task already exist in the list');
 })
 
+// const addEventListenersOnListElement = (taskItemContainerElement, parentEl) => {
+//     taskItemContainerElement.addEventListener('change', (event) => {
+//         taskList.changeTaskStatus(event);
+//     })
+//     taskItemContainerElement.addEventListener('click', (event) => {
+//         removeTaskItemContainerElement(event);
+// changeStateOfTaskElement(event);
+//     })
+//     addEventListenerForDragAndDrop(taskItemContainerElement);
+// }
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
         const liElement = event.target.parentElement.parentElement;
@@ -63,8 +73,10 @@ const removeTaskItemContainerElement = (event) => {
         taskList.removeTask(event);
     }
 }
-taskListContainerElement.addEventListener('click', removeTaskItemContainerElement
-)
+taskListContainerElement.addEventListener('click', (event) => {
+    changeStateOfTaskElement(event)
+    removeTaskItemContainerElement(event)
+})
 
 taskListContainerElement.addEventListener('change', (event) => {
     if ((event.target.tagName === 'INPUT'))
@@ -105,8 +117,8 @@ clearButton.addEventListener('click', () => {
 
 const changeStateOfTaskElement = (event) => {
     if ((event.target.tagName === 'P')) {
-        event.currentTarget.querySelector('.checkbox').checked = (event.currentTarget.querySelector('.checkbox').checked) ? false : true;
-        taskList.changeTaskStatus(event);
+        event.target.parentElement.querySelector('.checkbox').checked = (event.target.parentElement.querySelector('.checkbox').checked) ? false : true;
+        taskList.changeTaskStatus(event.target.parentElement);
     }
 }
 

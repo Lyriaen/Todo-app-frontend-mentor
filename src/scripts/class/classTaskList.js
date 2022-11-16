@@ -66,9 +66,9 @@ class TaskList {
         return localStorage.getItem('taskList') === null ? false : true;
     }
 
-    changeTaskStatus = (event) => {
-        const newCompletedStatus = event.target.checked;
-        const indexOfItemToChange = this.findIndexOfElement(event.currentTarget);
+    changeTaskStatus = (eventTarget) => {
+        const newCompletedStatus = eventTarget.querySelector('.checkbox').checked;
+        const indexOfItemToChange = this.findIndexOfElement(eventTarget);
         const taskToChange = this.list[indexOfItemToChange];
         taskToChange.changeCompletedStatus(newCompletedStatus);
         newCompletedStatus ?
