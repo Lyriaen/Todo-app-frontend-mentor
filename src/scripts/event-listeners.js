@@ -63,9 +63,7 @@ addTaskButton.addEventListener('click', (event) => {
 const removeTaskItemContainerElement = (event) => {
     if ((event.target.tagName === 'BUTTON')) {
         const liElement = event.target.parentElement.parentElement;
-        console.log(liElement)
         const ulElement = event.target.parentElement.parentElement.parentElement;
-        console.log(ulElement)
         ulElement.addEventListener('transitionend', () => {
             ulElement.removeChild(liElement);
         }, { once: true })
@@ -80,7 +78,7 @@ taskListContainerElement.addEventListener('click', (event) => {
 
 taskListContainerElement.addEventListener('change', (event) => {
     if ((event.target.tagName === 'INPUT'))
-        taskList.changeTaskStatus(event);
+        taskList.changeTaskStatus(event.target.parentElement);
 })
 
 
