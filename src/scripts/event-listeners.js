@@ -81,6 +81,13 @@ taskListContainerElement.addEventListener('change', (event) => {
         taskList.changeTaskStatus(event.target.parentElement);
 })
 
+const addEventListenersForDragAndDrop = () => {
+    taskListContainerElement.addEventListener('dragstart', handleDragStart)
+    taskListContainerElement.addEventListener('dragover', handleDragOver);
+    taskListContainerElement.addEventListener('dragend', handleDragEnd);
+}
+
+addEventListenersForDragAndDrop()
 
 clearButton.addEventListener('click', () => {
     const taskItems = getAllTaskItems();
@@ -123,12 +130,6 @@ const changeStateOfTaskElement = (event) => {
 const clearForm = () => {
     newItemForm.task.value = '';
     newItemForm.checkbox.checked = false;
-}
-
-const addEventListenerForDragAndDrop = (taskItemContainerElement) => {
-    taskItemContainerElement.parentElement.addEventListener('dragstart', handleDragStart);
-    taskItemContainerElement.addEventListener('dragover', handleDragOver);
-    taskItemContainerElement.parentElement.addEventListener('dragend', handleDragEnd);
 }
 
 window.onbeforeunload = () => {
