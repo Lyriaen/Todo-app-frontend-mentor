@@ -1,17 +1,29 @@
-export { body, taskListContainerElement, taskItems, incompleteTaskCounterElement, addTaskButton, clearButton, TabElements, changeThemeButton, activeTabElement, changeActiveTabElement, getAllTaskItems };
+export {
+    activeTabElement,
+    addTaskButton,
+    body,
+    changeThemeButton,
+    clearButton,
+    incompleteTaskCounterElement,
+    taskListContainerElement,
+    TabElements,
+    changeActiveTabElement,
+    getAllTaskItems,
+};
 
-const body = document.querySelector('body');
-const taskListContainerElement = document.querySelector('.main__task-list');
-const taskItems = document.querySelectorAll('.main__task-list__item')
-const incompleteTaskCounterElement = document.querySelector('.main__nav__incomplete-task-counter-container__counter');
-const addTaskButton = document.querySelector('.main__form-contanier__submit-button');
-const clearButton = document.querySelector('.main__nav__clear-button');
-const TabElements = document.querySelectorAll('.main__nav__button');
-let activeTabElement = document.querySelector('.main__nav__button');
-const changeThemeButton = document.querySelector('.header__theme-toggle');
-const changeActiveTabElement = (newActiveTabElement) => {
+let activeTabElement = document.querySelector( '.main__nav__button' );
+const addTaskButton = document.querySelector( '.main__form-container__submit-button' );
+const body = document.querySelector( 'body' );
+const changeThemeButton = document.querySelector( '.header__theme-toggle' );
+const clearButton = document.querySelector( '.main__nav__clear-button' );
+const incompleteTaskCounterElement = document.querySelector( '.main__nav__incomplete-task-counter-container__counter' );
+const taskListContainerElement = document.querySelector( '.main__task-list' );
+const TabElements = document.querySelectorAll( '.main__nav__button' );
+
+const changeActiveTabElement = ( newActiveTabElement ) => {
     activeTabElement = newActiveTabElement;
 };
+
 const getAllTaskItems = () => {
-    return document.querySelectorAll('.main__task-list__item')
+    return document.querySelectorAll( '.main__task-list__item' );
 };

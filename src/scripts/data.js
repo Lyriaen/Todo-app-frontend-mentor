@@ -1,5 +1,5 @@
-import { TaskList } from "./class/classTaskList.js";
+import { TaskList } from './class/classTaskList.js';
 
-export { taskList }
+export { taskList };
 
 const taskList = new TaskList();

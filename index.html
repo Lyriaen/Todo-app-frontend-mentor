@@ -2,54 +2,52 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="./src/css/themes.css">
-  <link rel="stylesheet" href="./src/css/media.css">
-  <link rel="stylesheet" href="./src/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <title>Todo app</title>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/images/favicon-32x32.png">
+    <link rel="stylesheet" href="./src/css/themes.css">
+    <link rel="stylesheet" href="./src/css/media.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Todo app</title>
 </head>
 
 <body>
 
-  <div class='container'>
+<div class='container'>
     <header class='header'>
-      <p class='header__content'>todo</p>
-      <img class='header__theme-toggle' alt='change color theme'>
+        <p class='header__content'>todo</p>
+        <img src='' class='header__theme-toggle' alt='change color theme'>
     </header>
     <main class='main'>
-      <form class='main__form-contanier' name='newItemForm'>
-        <input class='checkbox main__form-contanier__checkbox' type='checkbox' name='checkbox'>
-        <input class='main__form-contanier__input' type='text' placeholder='New task' name='task'>
-        <button class='button main__form-contanier__submit-button' type='submit'>Add</button>
-      </form>
-      <ul class='main__task-list fade'></ul>
+        <form class='main__form-container' name='newItemForm'>
+            <input class='checkbox main__form-container__checkbox' type='checkbox' name='checkbox'>
+            <input class='main__form-container__input' type='text' placeholder='New task' name='task'>
+            <button class='button main__form-container__submit-button' type='submit'>Add</button>
+        </form>
+        <ul class='main__task-list fade'></ul>
     </main>
     <nav class='main__nav'>
-      <div class='main__nav__incomplete-task-counter-container'>
-        <p class='main__nav__incomplete-task-counter-container__counter'></p>
-        <p>items left</p>
-      </div>
-      <div class='main__nav__button-container'>
-        <button class='button main__nav__button main__nav__button--active'>All</button>
-        <button class='button main__nav__button'>Active</button>
-        <button class='button main__nav__button'>Completed</button>
-      </div>
-      <div class='main__nav__clear-button-container'>
-        <button class='button main__nav__clear-button'>Clear Completed</button>
-      </div>
+        <div class='main__nav__incomplete-task-counter-container'>
+            <p class='main__nav__incomplete-task-counter-container__counter'></p>
+            <p>items left</p>
+        </div>
+        <div class='main__nav__button-container'>
+            <button class='button main__nav__button main__nav__button--active'>All</button>
+            <button class='button main__nav__button'>Active</button>
+            <button class='button main__nav__button'>Completed</button>
+        </div>
+        <div class='main__nav__clear-button-container'>
+            <button class='button main__nav__clear-button'>Clear Completed</button>
+        </div>
     </nav>
     <footer class='footer'>
-      <p class='footer_text'>Drag and drop to reorder list</p>
+        <p class='footer_text'>Drag and drop to reorder list</p>
     </footer>
-  </div>
-  <script type='module' src='./src/scripts/index.js'></script>
+</div>
+<script type='module' src='./src/scripts/index.js'></script>
 </body>
 
 </html>

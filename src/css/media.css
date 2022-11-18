@@ -33,7 +33,7 @@
         background-color: var(--background-color-main);
         grid-template-columns: repeat(3, 1fr);
         grid-template-areas:
-            "counter-container button-container clear-button";
+            'counter-container button-container clear-button';
     }
 }
 
@@ -47,8 +47,8 @@
     .main__nav {
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas:
-            "counter-container  clear-button"
-            "button-container   button-container";
+            'counter-container  clear-button'
+            'button-container   button-container';
         row-gap: 30px;
     }
 

@@ -1,12 +1,12 @@
 export { Task };
 
 class Task {
-    constructor(completed, task) {
+    constructor( completed, task ) {
         this.completed = completed;
         this.task = task;
     }
 
-    changeCompletedStatus(newStatus) {
+    changeCompletedStatus( newStatus ) {
         this.completed = newStatus;
     }
 }

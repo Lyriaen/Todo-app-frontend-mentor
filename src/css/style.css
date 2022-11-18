@@ -42,7 +42,7 @@ body {
     background-color: var(--background-color-main);
 }
 
-.main__form-contanier {
+.main__form-container {
     margin-bottom: 30px;
     padding: 20px;
     display: flex;
@@ -50,7 +50,7 @@ body {
     align-items: center;
 }
 
-.main__form-contanier__input {
+.main__form-container__input {
     flex-grow: 1;
     min-width: 0;
     background-color: transparent;
@@ -60,23 +60,23 @@ body {
     caret-color: var(--text-color-active-button);
 }
 
-.main__form-contanier__submit-button {
+.main__form-container__submit-button {
     transition: all 1s ease;
     opacity: 0.1;
 }
 
-.main__form-contanier__input:not(:placeholder-shown) + .main__form-contanier__submit-button {
+.main__form-container__input:not(:placeholder-shown) + .main__form-container__submit-button {
     color: var(--text-color-active-button);
     opacity: 1;
 
 }
 
-.main__form-contanier__input:not(:placeholder-shown) + .main__form-contanier__submit-button:hover {
+.main__form-container__input:not(:placeholder-shown) + .main__form-container__submit-button:hover {
     text-shadow: 0 0 12px var(--text-color-active-button);
     transform: scale(1.2);
 }
 
-.main__form-contanier__input:focus {
+.main__form-container__input:focus {
     outline: none;
 }
 
@@ -134,9 +134,8 @@ li.show {
 }
 
 .checkbox:hover {
-    background:
-        linear-gradient(var(--background-color-main), var(--background-color-main)) padding-box,
-        var(--background-color-check) border-box;
+    background: linear-gradient(var(--background-color-main), var(--background-color-main)) padding-box,
+    var(--background-color-check) border-box;
     border-radius: 50em;
     border: 2px solid transparent;
 }
