@@ -24,7 +24,7 @@ window.onload = () => {
 };
 
 tabButtonsContainer.addEventListener( 'click', ( event ) => {
-    if ( activeTabElement !== event.target ) {
+    if ( event.target.tagName === 'BUTTON' && activeTabElement !== event.target ) {
         event.target.classList.toggle( 'main__nav__button--active' );
         activeTabElement.classList.toggle( 'main__nav__button--active' );
         changeActiveTabElement( event.target );
