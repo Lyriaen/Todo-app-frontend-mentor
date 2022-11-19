@@ -5,54 +5,51 @@ export { createTaskListElement, clearTaskListContainerElementAndCreateNew, refre
 
 const clearTaskListContainerElementAndCreateNew = ( activeTab ) => {
     const elementArray = [ ...taskListContainerElement.children ];
-    if ( elementArray.length === 0 ) {
-        createActiveTab( activeTab );
-        return;
-    }
-    taskListContainerElement.addEventListener( 'transitionend', () => {
-        taskListContainerElement.replaceChildren();
-        createActiveTab( activeTab );
-    }, { once: true } );
-    elementArray.forEach( ( element ) => {
-        element.classList.remove( 'show' );
-    } );
-};
-
-const createActiveTab = ( activeTab ) => {
-    if ( activeTab === 'All' ) {
-        taskList.createTaskList();
-        return;
-    }
-    if ( activeTab === 'Completed' ) {
-        taskList.list.filter( task => task.completed === true ).map( task => createTaskListElement( task ) );
-        return;
-    }
-    if ( activeTab === 'Active' ) {
-        taskList.list.filter( task => task.completed === false ).map( task => createTaskListElement( task ) );
+    if ( elementArray.length !== 0 ) {
+        taskListContainerElement.addEventListener( 'transitionend', () => {
+            taskListContainerElement.replaceChildren();
+            createActiveTabTaskList( activeTab );
+        }, { once: true } );
+        elementArray.forEach( ( element ) => {
+            element.classList.remove( 'show' );
+        } );
     }
 };
 
-const createTaskListElement = ( taskItem, index ) => {
+const createActiveTabTaskList = ( activeTab ) => {
+    const activeTabTaskList = {
+        All: () => taskList.createTaskList(),
+        Completed: () => taskList.list
+                                 .filter( task => task.completed === true )
+                                 .map( task => createTaskListElement( task ) ),
+        Active: () => taskList.list
+                              .filter( task => task.completed === false )
+                              .map( task => createTaskListElement( task ) ),
+    };
+    activeTabTaskList[activeTab]();
+};
+
+const createTaskListElement = ( taskItem ) => {
     const liElement = document.createElement( 'li' );
-    liElement.setAttribute( 'draggable', true );
-    setTimeout( function () {
-        liElement.classList.add( 'show' );
-    }, 10 );
+    liElement.setAttribute( 'draggable', 'true' );
     const taskItemContainerElement = document.createElement( 'div' );
     taskItemContainerElement.classList.add( 'main__task-list__item' );
-    taskItemContainerElement.setAttribute( 'id', 'task-' + index );
+    // taskItemContainerElement.setAttribute( 'id', 'task-' + index );
     liElement.appendChild( taskItemContainerElement );
     taskListContainerElement.appendChild( liElement );
     taskItemContainerElement.appendChild( createCheckboxElement( taskItem.completed ) );
-    taskItemContainerElement.appendChild( createParagraphElement( taskItem.task ) );
+    taskItemContainerElement.appendChild( createParagraphElement( taskItem.content ) );
     taskItemContainerElement.appendChild( createDeleteElement() );
+    setTimeout( function () {
+        liElement.classList.add( 'show' );
+    }, 10 );
 };
 
 const createCheckboxElement = ( completed ) => {
     const checkboxElement = document.createElement( 'input' );
     checkboxElement.type = 'checkbox';
     if ( completed ) {
-        checkboxElement.setAttribute( 'checked', true );
+        checkboxElement.setAttribute( 'checked', 'true' );
     }
     checkboxElement.classList.add( 'checkbox', 'main__task-list__item__checkbox' );
     return checkboxElement;
