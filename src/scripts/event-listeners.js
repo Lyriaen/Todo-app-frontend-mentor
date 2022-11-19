@@ -9,7 +9,7 @@ import {
     changeThemeButton,
     clearButton,
     getAllTaskItems,
-    TabElements,
+    tabButtonsContainer,
     taskListContainerElement,
 } from './querySelectors.js';
 import { handleDragEnd, handleDragOver, handleDragStart } from './dragAndDropFunctions.js';
@@ -23,15 +23,24 @@ window.onload = () => {
             'light-theme');
 };
 
-TabElements.forEach( ( tab ) => tab.addEventListener( 'click', ( event ) => {
-    if ( activeTabElement === event.target ) {
-        return;
+tabButtonsContainer.addEventListener( 'click', ( event ) => {
+    if ( activeTabElement !== event.target ) {
+        event.target.classList.toggle( 'main__nav__button--active' );
+        activeTabElement.classList.toggle( 'main__nav__button--active' );
+        changeActiveTabElement( event.target );
+        clearTaskListContainerElementAndCreateNew( event.target.textContent );
     }
-    event.target.classList.toggle( 'main__nav__button--active' );
-    activeTabElement.classList.toggle( 'main__nav__button--active' );
-    changeActiveTabElement( event.target );
-    clearTaskListContainerElementAndCreateNew( event.target.textContent );
-} ) );
+} );
+
+// TabElements.forEach( ( tab ) => tab.addEventListener( 'click', ( event ) => {
+//     if ( activeTabElement === event.target ) {
+//         return;
+//     }
+//     event.target.classList.toggle( 'main__nav__button--active' );
+//     activeTabElement.classList.toggle( 'main__nav__button--active' );
+//     changeActiveTabElement( event.target );
+//     clearTaskListContainerElementAndCreateNew( event.target.textContent );
+// } ) );
 
 changeThemeButton.addEventListener( 'click', () => {
     body.classList.toggle( 'light-theme' );
