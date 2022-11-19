@@ -2,26 +2,25 @@ import { taskList } from './data.js';
 import { Task } from './class/classTask.js';
 import { clearTaskListContainerElementAndCreateNew, createTaskListElement } from './dom.js';
 import {
-   activeTabElement,
-   addTaskButton,
-   body,
-   changeActiveTabElement,
-   changeThemeButton,
-   clearButton,
-   getAllTaskItems,
-   TabElements,
-   taskListContainerElement,
+    activeTabElement,
+    addTaskButton,
+    body,
+    changeActiveTabElement,
+    changeThemeButton,
+    clearButton,
+    getAllTaskItems,
+    TabElements,
+    taskListContainerElement,
 } from './querySelectors.js';
 import { handleDragEnd, handleDragOver, handleDragStart } from './dragAndDropFunctions.js';
 
 export { removeTaskItemContainerElement };
 
 window.onload = () => {
-    body.className = localStorage.getItem( 'theme' ) ?
-        localStorage.getItem( 'theme' ) :
-        window.matchMedia( '(prefers-color-scheme: dark)' ).matches ?
+    body.className = (localStorage.getItem( 'theme' )) ||
+        (window.matchMedia( '(prefers-color-scheme: dark)' ).matches ?
             'dark-theme' :
-            'light-theme';
+            'light-theme');
 };
 
 TabElements.forEach( ( tab ) => tab.addEventListener( 'click', ( event ) => {
@@ -49,7 +48,7 @@ addTaskButton.addEventListener( 'click', ( event ) => {
         return;
     }
     const taskItem = new Task( newItemForm.checkbox.checked, newItemForm.task.value.trim() );
-    if ( !taskList.checkIfTaskExist( taskItem.task ) ) {
+    if ( !taskList.checkIfTaskExist( taskItem.content ) ) {
         createTaskListElement( taskItem );
         taskList.addTask( taskItem );
         clearForm();
@@ -59,7 +58,7 @@ addTaskButton.addEventListener( 'click', ( event ) => {
 } );
 
 const removeTaskItemContainerElement = ( event ) => {
-    if ( (event.target.tagName === 'BUTTON') ) {
+    if ( event.target.tagName === 'BUTTON' ) {
         const liElement = event.target.parentElement.parentElement;
         const ulElement = event.target.parentElement.parentElement.parentElement;
         ulElement.addEventListener( 'transitionend', () => {
