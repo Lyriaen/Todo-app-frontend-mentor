@@ -36,7 +36,6 @@ const createTaskListElement = ( taskItem ) => {
     liElement.setAttribute( 'draggable' , 'true' );
     const taskItemContainerElement = document.createElement( 'div' );
     taskItemContainerElement.classList.add( 'main__task-list__item' );
-    // taskItemContainerElement.setAttribute( 'id', 'task-' + index );
     liElement.appendChild( taskItemContainerElement );
     taskListContainerElement.appendChild( liElement );
     taskItemContainerElement.appendChild( createCheckboxElement( taskItem.completed ) );

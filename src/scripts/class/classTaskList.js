@@ -10,12 +10,11 @@ class TaskList {
             const temp = JSON.parse( localStorage.getItem( 'taskList' ) );
             this.list = temp.map( task => new Task( task.completed , task.content ) );
             this.createTaskList();
-            this.incompleteTaskCounter = new IncompleteTaskCounter( this.list );
-            return;
+        } else {
+            this.list = [];
+            this.saveTaskList();
         }
-        this.list = [];
         this.incompleteTaskCounter = new IncompleteTaskCounter( this.list );
-        localStorage.setItem( 'taskList' , JSON.stringify( this.list ) );
     }
 
     addTask = ( taskItem ) => {
@@ -40,14 +39,8 @@ class TaskList {
     };
 
     findIndexOfElement = ( taskContent ) => {
-        // const elementText = element.querySelector( '.main__task-list__item__task' ).textContent;
-        // return this.findIndexByText( elementText );
         return this.list.map( task => task.content ).indexOf( taskContent );
     };
-
-    // findIndexByText = ( taskText ) => {
-    //     return this.list.map( task => task.content ).indexOf( taskText );
-    // };
 
     clearComplete = ( taskText ) => {
         const indexOfItemToRemove = this.findIndexOfElement( taskText );
