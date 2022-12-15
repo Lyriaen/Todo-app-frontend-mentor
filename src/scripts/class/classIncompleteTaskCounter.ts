@@ -1,10 +1,11 @@
 import { refreshIncompleteTaskCounterElement } from '../dom.js';
+import { Task } from "./classTask";
 
-export { IncompleteTaskCounter };
+export class IncompleteTaskCounter {
+    private value = 0
 
-class IncompleteTaskCounter {
-    constructor( taskList ) {
-        this.value = taskList.reduce( ( sum, element ) => element.completed ? sum : ++sum, 0 );
+    constructor( taskList: Task[] ) {
+        this.value = taskList.reduce( ( sum: number , element: Task ) => element.completed ? sum : ++sum , 0 );
         refreshIncompleteTaskCounterElement( this.value );
     }
 

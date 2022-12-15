@@ -17,18 +17,20 @@ import {
 export { removeTaskItemContainerElement };
 
 window.onload = () => {
-    body.className = ( localStorage.getItem( 'theme' ) ) ||
-        ( window.matchMedia( '(prefers-color-scheme: dark)' ).matches ?
+    body.className = (localStorage.getItem( 'theme' )) ||
+        (window.matchMedia( '(prefers-color-scheme: dark)' ).matches ?
             'dark-theme' :
-            'light-theme' );
+            'light-theme');
 };
 
-tabButtonsContainer.addEventListener( 'click' , ( event ) => {
-    if ( event.target.tagName === 'BUTTON' && activeTabElement !== event.target ) {
-        event.target.classList.toggle( 'main__nav__button--active' );
+tabButtonsContainer.addEventListener( 'click' , ( event: MouseEvent ) => {
+    const element = event.target as HTMLButtonElement
+    if ( element.tagName === 'BUTTON' && activeTabElement !== event.target ) {
+        element.classList.toggle( 'main__nav__button--active' );
         activeTabElement.classList.toggle( 'main__nav__button--active' );
-        changeActiveTabElement( event.target );
-        clearTaskListContainerElementAndCreateNew( event.target.textContent );
+        console.log( element.textContent )
+        changeActiveTabElement( element );
+        clearTaskListContainerElementAndCreateNew( element.textContent as string );
     }
 } );
 
@@ -74,7 +76,7 @@ taskListContainerElement.addEventListener( 'click' , ( event ) => {
 } );
 
 taskListContainerElement.addEventListener( 'change' , ( event ) => {
-    if ( ( event.target.tagName === 'INPUT' ) )
+    if ( (event.target.tagName === 'INPUT') )
         taskList.changeTaskStatus( event.target.parentElement );
 } );
 

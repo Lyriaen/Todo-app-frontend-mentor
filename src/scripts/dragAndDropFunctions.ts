@@ -1,8 +1,8 @@
 import { taskList } from './data.js';
 
-export { handleDragStart, handleDragOver, handleDragEnd };
+export { handleDragStart , handleDragOver , handleDragEnd };
 
-let lastMousePosition = { y: null };
+let lastMousePosition = { y: 0 };
 
 const handleDragStart = ( event ) => {
     const draggedElement = event.target;
@@ -16,16 +16,16 @@ const handleDragOver = ( event ) => {
     const taskListContainer = event.target.closest( 'ul' );
     const draggedElement = document.querySelector( '.dragged' );
     const overElement = event.target.parentElement.parentElement;
-    if ( overElement.tagName === 'LI' && draggedElement.tagName === 'LI' ) {
+    if ( overElement.tagName === 'LI' && draggedElement?.tagName === 'LI' ) {
         const directionOfMove = checkMouseMove( event );
         if ( draggedElement !== overElement ) {
             if ( directionOfMove === 'down' ) {
-                taskListContainer.insertBefore( overElement, draggedElement );
+                taskListContainer.insertBefore( overElement , draggedElement );
             }
             if ( directionOfMove === 'up' ) {
-                taskListContainer.insertBefore( draggedElement, overElement );
+                taskListContainer.insertBefore( draggedElement , overElement );
             }
-            taskList.swapTasks( draggedElement, overElement );
+            taskList.swapTasks( draggedElement.textContent as string , overElement.textContent );
         }
     }
 };
@@ -46,5 +46,5 @@ const handleDragEnd = ( event ) => {
     const draggedElement = event.target;
     draggedElement.classList.remove( 'dragged' );
     draggedElement.style = '';
-    lastMousePosition = { y: null };
+    lastMousePosition = { y: 0 };
 };
