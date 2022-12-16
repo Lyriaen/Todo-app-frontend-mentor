@@ -1,9 +1,10 @@
 import { taskList } from './data.js';
 import { incompleteTaskCounterElement , taskListContainerElement } from './querySelectors.js';
+import { Task } from "./class/classTask";
 
 export { createTaskListElement , clearTaskListContainerElementAndCreateNew , refreshIncompleteTaskCounterElement };
 
-const clearTaskListContainerElementAndCreateNew = ( activeTab ) => {
+const clearTaskListContainerElementAndCreateNew = ( activeTab: string ) => {
     const elementArray = [ ...taskListContainerElement.children ];
     if ( elementArray.length !== 0 ) {
         taskListContainerElement.addEventListener( 'transitionend' , () => {
@@ -18,20 +19,20 @@ const clearTaskListContainerElementAndCreateNew = ( activeTab ) => {
     }
 };
 
-const createActiveTabTaskList = ( activeTab ) => {
+const createActiveTabTaskList = ( activeTab: string ) => {
     const activeTabTaskList = {
         All: () => taskList.createTaskList() ,
         Completed: () => taskList.list
-                                 .filter( task => task.completed === true )
-                                 .map( task => createTaskListElement( task ) ) ,
+            .filter( task => task.completed )
+            .map( task => createTaskListElement( task ) ) ,
         Active: () => taskList.list
-                              .filter( task => task.completed === false )
-                              .map( task => createTaskListElement( task ) ) ,
+            .filter( task => !task.completed )
+            .map( task => createTaskListElement( task ) ) ,
     };
-    activeTabTaskList[ activeTab ]();
+    activeTabTaskList[ activeTab as keyof typeof activeTabTaskList ]();
 };
 
-const createTaskListElement = ( taskItem ) => {
+const createTaskListElement = ( taskItem: Task ) => {
     const liElement = document.createElement( 'li' );
     liElement.setAttribute( 'draggable' , 'true' );
     const taskItemContainerElement = document.createElement( 'div' );
@@ -46,7 +47,7 @@ const createTaskListElement = ( taskItem ) => {
     } , 10 );
 };
 
-const createCheckboxElement = ( completed ) => {
+const createCheckboxElement = ( completed: boolean ) => {
     const checkboxElement = document.createElement( 'input' );
     checkboxElement.type = 'checkbox';
     if ( completed ) {
@@ -56,7 +57,7 @@ const createCheckboxElement = ( completed ) => {
     return checkboxElement;
 };
 
-const createParagraphElement = ( content ) => {
+const createParagraphElement = ( content: string ) => {
     const taskContentElement = document.createElement( 'p' );
     taskContentElement.classList.add( 'main__task-list__item__task' );
     taskContentElement.textContent = content;
@@ -69,7 +70,7 @@ const createDeleteElement = () => {
     return deleteElement;
 };
 
-const refreshIncompleteTaskCounterElement = ( count ) => {
+const refreshIncompleteTaskCounterElement = ( count: number ) => {
     incompleteTaskCounterElement.addEventListener( 'transitionend' , () => {
         incompleteTaskCounterElement.textContent = `${ count }`;
         incompleteTaskCounterElement.classList.remove( 'change-counter' );
