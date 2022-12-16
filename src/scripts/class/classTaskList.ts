@@ -28,8 +28,9 @@ class TaskList {
         this.saveTaskList();
     };
 
-    removeTask = ( event ) => {
-        const indexOfItemToRemove = this.findIndexOfElement( event.target.parentElement.textContent );
+    removeTask = ( event: Event ) => {
+        const element = event.target as HTMLElement;
+        const indexOfItemToRemove = this.findIndexOfElement( element.parentElement?.textContent as string );
         if ( !this.list[ indexOfItemToRemove ].completed ) {
             this.incompleteTaskCounter.decrease();
         }
@@ -56,7 +57,7 @@ class TaskList {
         } );
     };
 
-    private checkIfTaskExist = ( taskText: string ) => {
+    public checkIfTaskExist = ( taskText: string ) => {
         return this.findIndexOfElement( taskText ) !== -1;
     };
 

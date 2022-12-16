@@ -5,7 +5,7 @@ const clearTaskListContainerElementAndCreateNew = (activeTab) => {
     const elementArray = [...taskListContainerElement.children];
     if (elementArray.length !== 0) {
         taskListContainerElement.addEventListener('transitionend', () => {
-            taskListContainerElement === null || taskListContainerElement === void 0 ? void 0 : taskListContainerElement.replaceChildren();
+            taskListContainerElement.replaceChildren();
             createActiveTabTaskList(activeTab);
         }, { once: true });
         elementArray.forEach((element) => {

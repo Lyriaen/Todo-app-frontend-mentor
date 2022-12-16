@@ -4,19 +4,20 @@ export { handleDragStart , handleDragOver , handleDragEnd };
 
 let lastMousePosition = { y: 0 };
 
-const handleDragStart = ( event ) => {
-    const draggedElement = event.target;
+const handleDragStart = ( event: MouseEvent ) => {
+    const draggedElement = event.target as HTMLElement;
     draggedElement.classList.add( 'dragged' );
     draggedElement.style.opacity = '0.3';
     lastMousePosition = { y: event.clientY };
 };
 
-const handleDragOver = ( event ) => {
+const handleDragOver = ( event: MouseEvent ) => {
     event.preventDefault();
-    const taskListContainer = event.target.closest( 'ul' );
+    const element = event.target as HTMLElement;
+    const taskListContainer = element.closest( 'ul' ) as HTMLUListElement;
     const draggedElement = document.querySelector( '.dragged' );
-    const overElement = event.target.parentElement.parentElement;
-    if ( overElement.tagName === 'LI' && draggedElement?.tagName === 'LI' ) {
+    const overElement = element.parentElement?.parentElement;
+    if ( overElement?.tagName === 'LI' && draggedElement?.tagName === 'LI' ) {
         const directionOfMove = checkMouseMove( event );
         if ( draggedElement !== overElement ) {
             if ( directionOfMove === 'down' ) {
@@ -25,12 +26,12 @@ const handleDragOver = ( event ) => {
             if ( directionOfMove === 'up' ) {
                 taskListContainer.insertBefore( draggedElement , overElement );
             }
-            taskList.swapTasks( draggedElement.textContent as string , overElement.textContent );
+            taskList.swapTasks( draggedElement.textContent as string , overElement.textContent as string );
         }
     }
 };
 
-const checkMouseMove = ( event ) => {
+const checkMouseMove = ( event: MouseEvent ) => {
     const currentMousePosition = event.clientY;
     const differanceInPosition = currentMousePosition - lastMousePosition.y;
     const direction = differanceInPosition > 0 ?
@@ -42,9 +43,9 @@ const checkMouseMove = ( event ) => {
     return direction;
 };
 
-const handleDragEnd = ( event ) => {
-    const draggedElement = event.target;
+const handleDragEnd = ( event: Event ) => {
+    const draggedElement = event.target as HTMLLIElement;
     draggedElement.classList.remove( 'dragged' );
-    draggedElement.style = '';
+    draggedElement.setAttribute( 'style' , '' );
     lastMousePosition = { y: 0 };
 };

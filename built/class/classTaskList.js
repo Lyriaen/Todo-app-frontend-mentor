@@ -12,7 +12,9 @@ class TaskList {
             this.saveTaskList();
         };
         this.removeTask = (event) => {
-            const indexOfItemToRemove = this.findIndexOfElement(event.target.parentElement.textContent);
+            var _a;
+            const element = event.target;
+            const indexOfItemToRemove = this.findIndexOfElement((_a = element.parentElement) === null || _a === void 0 ? void 0 : _a.textContent);
             if (!this.list[indexOfItemToRemove].completed) {
                 this.incompleteTaskCounter.decrease();
             }

@@ -1,6 +1,6 @@
 import { taskList } from './data.js';
 export { handleDragStart, handleDragOver, handleDragEnd };
-let lastMousePosition = { y: null };
+let lastMousePosition = { y: 0 };
 const handleDragStart = (event) => {
     const draggedElement = event.target;
     draggedElement.classList.add('dragged');
@@ -8,11 +8,13 @@ const handleDragStart = (event) => {
     lastMousePosition = { y: event.clientY };
 };
 const handleDragOver = (event) => {
+    var _a;
     event.preventDefault();
-    const taskListContainer = event.target.closest('ul');
+    const element = event.target;
+    const taskListContainer = element.closest('ul');
     const draggedElement = document.querySelector('.dragged');
-    const overElement = event.target.parentElement.parentElement;
-    if (overElement.tagName === 'LI' && (draggedElement === null || draggedElement === void 0 ? void 0 : draggedElement.tagName) === 'LI') {
+    const overElement = (_a = element.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
+    if ((overElement === null || overElement === void 0 ? void 0 : overElement.tagName) === 'LI' && (draggedElement === null || draggedElement === void 0 ? void 0 : draggedElement.tagName) === 'LI') {
         const directionOfMove = checkMouseMove(event);
         if (draggedElement !== overElement) {
             if (directionOfMove === 'down') {
@@ -39,6 +41,6 @@ const checkMouseMove = (event) => {
 const handleDragEnd = (event) => {
     const draggedElement = event.target;
     draggedElement.classList.remove('dragged');
-    draggedElement.style = '';
-    lastMousePosition = { y: null };
+    draggedElement.setAttribute('style', '');
+    lastMousePosition = { y: 0 };
 };

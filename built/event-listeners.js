@@ -16,7 +16,7 @@ tabButtonsContainer.addEventListener('click', (event) => {
         element.classList.toggle('main__nav__button--active');
         activeTabElement.classList.toggle('main__nav__button--active');
         console.log(element.textContent);
-        changeActiveTabElement(element.textContent);
+        changeActiveTabElement(element);
         clearTaskListContainerElementAndCreateNew(element.textContent);
     }
 });
@@ -28,24 +28,26 @@ changeThemeButton.addEventListener('click', () => {
 });
 addTaskButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const newItemForm = document.forms.newItemForm;
+    const newItemForm = document.forms[0];
     if (newItemForm.task.value === '') {
         alert('Task is empty');
         return;
     }
     const taskItem = new Task(newItemForm.checkbox.checked, newItemForm.task.value.trim());
-    if (!taskList.checkIfTaskExist(taskItem.content)) {
-        createTaskListElement(taskItem);
-        taskList.addTask(taskItem);
-        clearForm();
+    if (taskList.checkIfTaskExist(taskItem.content)) {
+        alert('This task already exist in the list');
         return;
     }
-    alert('This task already exist in the list');
+    createTaskListElement(taskItem);
+    taskList.addTask(taskItem);
+    clearForm();
 });
 const removeTaskItemContainerElement = (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        const liElement = event.target.parentElement.parentElement;
-        const ulElement = event.target.parentElement.parentElement.parentElement;
+    var _a;
+    const element = event.target;
+    if (element.tagName === 'BUTTON') {
+        const liElement = (_a = element.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
+        const ulElement = liElement.parentElement;
         ulElement.addEventListener('transitionend', () => {
             ulElement.removeChild(liElement);
         }, { once: true });
@@ -58,8 +60,9 @@ taskListContainerElement.addEventListener('click', (event) => {
     removeTaskItemContainerElement(event);
 });
 taskListContainerElement.addEventListener('change', (event) => {
-    if ((event.target.tagName === 'INPUT'))
-        taskList.changeTaskStatus(event.target.parentElement);
+    const element = event.target;
+    if ((element.tagName === 'INPUT') && element.parentElement)
+        taskList.changeTaskStatus(element.parentElement);
 });
 const addEventListenersForDragAndDrop = () => {
     taskListContainerElement.addEventListener('dragstart', handleDragStart);
@@ -71,28 +74,30 @@ clearButton.addEventListener('click', () => {
     const taskItems = getAllTaskItems();
     let taskListContainerElementChildrenArray = [...taskItems];
     taskListContainerElementChildrenArray.reverse().map(task => {
-        if (task.firstChild.checked === true) {
-            task.parentElement.addEventListener('transitionend', (event) => {
-                if (event.propertyName === 'opacity') {
+        var _a, _b;
+        if (task.firstChild.checked) {
+            (_a = task.parentElement) === null || _a === void 0 ? void 0 : _a.addEventListener('transitionend', (event) => {
+                if (event.propertyName === 'opacity' && task.parentElement) {
                     event.stopPropagation();
                     taskListContainerElement.removeChild(task.parentElement);
-                    taskList.clearComplete(task.children[1].innerText);
+                    taskList.clearComplete(task.children[1].textContent);
                 }
             });
-            task.parentElement.classList.remove('show');
+            (_b = task.parentElement) === null || _b === void 0 ? void 0 : _b.classList.remove('show');
         }
     });
 });
 const changeStateOfTaskElement = (event) => {
-    if (event.target.tagName === 'P') {
-        const checkbox = event.target.parentElement.querySelector('.checkbox');
+    const element = event.target;
+    if (element.tagName === 'P' && element.parentElement) {
+        const checkbox = element.parentElement.querySelector('.checkbox');
         checkbox.checked = !checkbox.checked;
-        taskList.changeTaskStatus(event.target.parentElement);
+        taskList.changeTaskStatus(element.parentElement);
     }
 };
 const clearForm = () => {
-    newItemForm.task.value = '';
-    newItemForm.checkbox.checked = false;
+    document.forms[0].task.value = '';
+    document.forms[0].checkbox.checked = false;
 };
 window.onbeforeunload = () => {
     taskList.saveTaskList();
