@@ -44,7 +44,7 @@ changeThemeButton.addEventListener( 'click' , () => {
 addTaskButton.addEventListener( 'click' , ( event ) => {
     event.preventDefault();
     const newItemForm = document.forms[ 0 ];
-    if ( newItemForm.task.value === '' ) {
+    if ( newItemForm.task.value.trim() === '' ) {
         alert( 'Task is empty' );
         return;
     }
