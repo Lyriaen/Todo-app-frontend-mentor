@@ -29,7 +29,6 @@ describe( 'full flow of application' , () => {
     let TODO_ITEM_THREE = 'put project on github';
     let TODO_ITEM_FOUR = 'test app';
     let TODO_ITEM_FIVE = 'HURRAY! LETS PARTY!';
-    let TODO_ITEM_SIX = 'now time to sleep';
 
     const counter = '.main__nav__incomplete-task-counter-container__counter';
 
@@ -83,11 +82,48 @@ describe( 'full flow of application' , () => {
     } );
 
     it( 'remove all completed' , () => {
-        cy.addTask( TODO_ITEM_TWO );
+        cy.addTask( TODO_ITEM_FOUR , true );
         cy.addTask( TODO_ITEM_FIVE , true );
-        cy.addTask( TODO_ITEM_SIX , true );
         cy.get( '.main__nav__clear-button' ).click();
         cy.get( '.main__task-list li' ).should( 'have.length' , 3 );
         cy.get( counter ).should( 'have.text' , 1 );
     } );
+} );
+
+describe( 'check task adding' , () => {
+
+    let TODO_ITEM_ONE = 'create app';
+    let TODO_ITEM_TWO = 'commit changes';
+
+    before( 'visit page' , () => {
+        cy.visit( '../../index.html' , {
+            onBeforeLoad( win ) {
+                win.localStorage.clear();
+            } ,
+        } );
+    } );
+
+    it( 'add task to list ' , () => {
+        cy.get( '.main__task-list li' ).should( 'have.length' , 0 );
+        cy.addTask( TODO_ITEM_ONE , true );
+        cy.get( '.main__task-list li' ).should( 'have.length' , 1 );
+        cy.addTask( TODO_ITEM_TWO );
+        cy.get( '.main__task-list li' ).should( 'have.length' , 2 );
+    } );
+
+    it( 'doesnt add \"empty\" task ' , () => {
+        cy.addTask( '           ' );
+        cy.get( '.main__task-list li' ).should( 'have.length' , 2 );
+    } );
+
+    it( 'doesnt add task which already exist in the list' , () => {
+        cy.addTask( TODO_ITEM_ONE );
+        cy.get( '.main__task-list li' ).should( 'have.length' , 2 );
+    } );
+
+    it( 'check if task is trim when added' , () => {
+        cy.addTask( '2' );
+        cy.get( '.main__task-list li' ).eq( 2 ).should( 'have.text' , TODO_ITEM_ONE + '2' );
+    } );
+
 } );
